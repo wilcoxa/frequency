@@ -18,7 +18,7 @@ NULL
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.frequencies <- list(
-    frequencies_open_null = FALSE
+    frequencies_open_output = FALSE
     # frequencies.path = "~/R-dev",
     # frequencies.install.args = "",
     # frequencies.name = "Your name goes here",
