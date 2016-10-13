@@ -49,6 +49,13 @@ freq <- function(df, fn = NULL, maxrow = 30, trim = TRUE, type = "html", templat
     x
   })
 
+  # conversion of variable label attributes for foreign
+  if (!is.null(attributes(x)$variable.labels)){
+    for(i in seq_along(df)){
+      attr(df[[i]], "label") <- attr(df, "variable.labels")[[i]]
+    }
+  }
+
   # create a list of frequencies
   message("Building tables")
   all_freqs <- lapply_pb(names(df), function(x, df1 = as.data.frame(df), maxrow1 = maxrow, trim1 = trim){

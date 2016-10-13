@@ -9,7 +9,6 @@
 #'
 #' @docType package
 #' @name frequencies
-#' @import dplyr
 #' @import ReporteRs
 #' @import gtools
 NULL

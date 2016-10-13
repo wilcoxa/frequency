@@ -43,8 +43,6 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
 
   flextables <- NULL
 
-  # for (i in 1:length(all_freqs)){
-  # cat(".")
   message("Writing tables")
   pb <- txtProgressBar(min = 0, max = length(all_freqs), style = 3)
   for (i in 1:length(all_freqs)){
