@@ -16,38 +16,22 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
   } else {
     outpth <- file.path(paste0(fn, file_extension))
   }
-  #------
-  # some settings
 
-  blue <- "#007AB2"
-  # blue <- "#1b3d93"
-  grey <- "#A6A6A6"
+  #-------------------
+  # outdoc <<- bsdoc() # for html
+  # assign(outdoc, bsdoc(), envir = .GlobalEnv)
 
-  # title_format   <- textProperties(color = green,   font.weight = "bold", font.size = 8.5, font.family = "Tahoma")
-  #   txt_green_bold <- textProperties(color = green,   font.weight = "bold", font.size = 8,   font.family = "Arial")
-  #   txt_green      <- textProperties(color = green,   font.size = 8, font.family = "Arial")
+  if(output_type == "html"){
+    mymenu <- BootstrapMenu(title = 'Frequencies')
+    mydd <- DropDownMenu(label = 'Variables')
+  }
 
+  # formatting defaults
   txt_italics <- textProperties(font.style = "italic")
   txt_bold <- textProperties(font.weight = "bold")
 
-  content_format <- textProperties(color = "black", font.size = 8, font.family = "Arial")
-  # varhead <- textProperties(color = blue, font.size = 14, font.family = "Arial", font.weight = "bold")
-  varhead <- textProperties(font.size = 14, font.family = "Arial", font.weight = "bold")
-
-  left_aligned    <- parProperties(text.align = "left",   padding.bottom = 1, padding.top = 1, padding.left = 0, padding.right = 0)
-  left_aligned0   <- parProperties(text.align = "left",   padding.bottom = 0, padding.top = 0, padding.left = 0, padding.right = 0)
-  center_aligned  <- parProperties(text.align = "center", padding.bottom = 2, padding.top = 4, padding.left = 0, padding.right = 0)
-  center_aligned0 <- parProperties(text.align = "center", padding.bottom = 0, padding.top = 0, padding.left = 0, padding.right = 0)
-  right_aligned   <- parProperties(text.align = "right",  padding.bottom = 2, padding.top = 4, padding.left = 0, padding.right = 0)
-  right_aligned1   <- parProperties(text.align = "right",  padding.bottom = 2, padding.top = 3, padding.left = 0, padding.right = 0)
-  right_aligned2   <- parProperties(text.align = "right",  padding.bottom = 2, padding.top = 2, padding.left = 0, padding.right = 0)
-
-  right_aligned0  <- parProperties(text.align = "right",  padding.bottom = 0, padding.top = 0, padding.left = 0, padding.right = 0)
-
   no_border     <- cellProperties(border.bottom.style = "none", border.left.style = "none",
                                   border.right.style = "none", border.top.style = "none")
-  dashed_top    <- cellProperties(border.bottom.style = "none", border.left.style = "none",
-                                  border.right.style = "none", border.top.style = "dashed")
   solid_top     <- cellProperties(border.bottom.style = "none", border.left.style = "none",
                                   border.right.style = "none", border.top.style = "solid")
   solid_bottom  <- cellProperties(border.bottom.style = "solid", border.left.style = "none",
@@ -55,39 +39,29 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
   topbottom     <- cellProperties(border.bottom.style = "solid", border.left.style = "none",
                                   border.right.style = "none", border.top.style = "solid")
 
-  thick_outside <- cellProperties(border.bottom.style = "solid", border.left.style = "solid",
-                                  border.right.style = "solid", border.top.style = "solid")
-
-  #-------------------
-
-
-  # outdoc <<- bsdoc() # for html
-  # assign(outdoc, bsdoc(), envir = .GlobalEnv)
-
-
-  if(output_type == "html"){
-    mymenu <- BootstrapMenu(title = 'Frequencies')
-    mydd <- DropDownMenu(label = 'Variables')
-  }
+  #-----------------------------------------------------------------------------
 
   flextables <- NULL
 
   for (i in 1:length(all_freqs)){
     cat(".")
 
+    miss_row <- which(all_freqs[[i]][[1]] %in% "Missing") - 1
+    tmp <- all_freqs[[i]]
+
     # html issue
     if(output_type == "html"){
-      all_freqs[i][[1]][ , 2] <- gsub("<", "&lt", all_freqs[i][[1]][ , 2])
-      all_freqs[i][[1]][ , 2] <- gsub(">", "&gt", all_freqs[i][[1]][ , 2])
+      tmp[ , 2] <- gsub("<", "&lt", tmp[ , 2])
+      tmp[ , 2] <- gsub(">", "&gt", tmp[ , 2])
       parbreak <- "<br>"
     } else {
       parbreak <- ""
     }
 
-    if(any(!grepl("^$|^...$", all_freqs[[i]]$label))){
+    if(any(!grepl("^$|^...$", tmp$label))){
       widths <- c(1, 1, 3, 1, 1, 1, 1)
     } else {
-      all_freqs[[i]] <- all_freqs[[i]][, -3]
+      tmp <- tmp[, -3]
       widths <- c(1, 4, 1, 1, 1, 1)
     }
 
@@ -104,30 +78,25 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
       varhead_text <- names(all_freqs[i])
     }
 
-    varhead <- pot(varhead_text, textProperties(color = "#007AB2", font.size = 14, font.family = "Arial", font.weight = "bold"))
+    varhead <- pot(varhead_text, format = getOption("frequencies_varhead"))
     addParagraph(outdoc, varhead)
 
+    # create flextable
+    mytable <- FlexTable(data = tmp, header.columns = TRUE)
 
-    mytable <- FlexTable(data = all_freqs[[i]], header.columns = TRUE)
-    #     mytable[, ] <- no_border
-    #     mytable[, , to = "header"] <- no_border
-
-    # Set default font sizes
-    # mytable[, ] <- content_format
+    # Set default formatting sizes
+    mytable[, ] <- getOption("frequencies_content_format")
 
     # set borders
     mytable[, ] <- no_border
     mytable[, , to = "header"] <- topbottom
     mytable[nrow(all_freqs[[i]]), ] <- solid_bottom
-    # mytable[nrow(all_freqs[[i]])-3, 2:ncol(all_freqs[[i]])] <- solid_bottom
-    mytable[nrow(all_freqs[[i]])-3, ] <- solid_bottom
+    mytable[miss_row, ] <- solid_bottom
 
     # set fonts
     mytable[, 1] <- txt_italics
-    mytable[nrow(all_freqs[[i]])-3, ] <- txt_bold
+    mytable[miss_row, ] <- txt_bold
     mytable[nrow(all_freqs[[i]]), ] <- txt_bold
-
-
 
     # set background colours
     # mytable <- setFlexTableBackgroundColors(mytable, i = nrow(all_freqs[[i]]), j = 2, colors = grey)
@@ -160,20 +129,11 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
     if (getOption("frequencies_open_output")){
       browseURL(outpth)
     } else {
-      print(paste0("\ntemporary file saved:", outpth))
-      print("use options(frequencies_open_output = TRUE) to open by default")
-
+      message("temporary file saved to: ", outpth)
+      message("use options(frequencies_open_output = TRUE) to open by default")
     }
   }
 
-  #   mydd = addLinkItem( mydd, label = 'GitHub', 'http://github.com/')
-  #   mydd = addLinkItem( mydd, separator.after = TRUE)
-  #   mydd = addLinkItem( mydd, label = 'Wikipedia', 'http://www.wikipedia.fr')
-  #
-
-  # rm(outdoc, envir = .GlobalEnv)
-
-  invisible(list(all_freqs, flextables))
-
+  invisible(list("tables" = all_freqs, "flextables" = flextables))
 
 }

@@ -15,7 +15,7 @@ makefreqs <- function(df, var, maxrow, trim){
 
   res[[var]] <- as.vector(res[[var]])
   class(res[[var]])
-  res[[var]] <- as.character(res[[var]])
+  res[[var]] <- as.character(res[[var]]) # Need to sort out scietific notation
 
   # Get all labels even if no cases
   if(!is.null(attributes(df[[var]])$labels)){
@@ -37,14 +37,20 @@ makefreqs <- function(df, var, maxrow, trim){
   names(tmp) <- c(var, "missing")
   res <- full_join(res, tmp, by = var)
 
+
+  sort_by <- switch(getOption("frequencies_sort_by"),
+                    "value" = var,
+                    "label" = "label",
+                    "count" = "freq")
+
   # reorder and put blank and NA at end
   res[["missing"]][is.na(res[["missing"]])] <- FALSE
 
   res_v <- res[res[["missing"]] %in% FALSE,]
-  res_v <- res_v[mixedorder(res_v[[var]]),]
+  res_v <- res_v[mixedorder(res_v[[sort_by]], decreasing = getOption("frequencies_sort_descending")),]
 
   res_m <- res[res[["missing"]] %in% TRUE,]
-  res_m <- res_m[mixedorder(res_m[[var]]),]
+  res_m <- res_m[mixedorder(res_m[[sort_by]], decreasing = getOption("frequencies_sort_descending")),]
   mis <- which(!res_m[[var]] %in% "" & !is.na(res_m[[var]]))
   bl <- which(res_m[[var]] %in% "")
   na <- which(is.na(res_m[[var]]))
@@ -76,7 +82,7 @@ makefreqs <- function(df, var, maxrow, trim){
   }
 
   precol <- c("Valid", rep("", nrow(res[res$missing %in% FALSE,])), "Missing", rep("", nrow(res[res$missing %in% TRUE,])))
-  res <- cbind(precol, res)
+  res <- cbind(precol, res, stringsAsFactors = FALSE)
 
   res[["Percent"]] <- dec_dig((as.numeric(res$Freq) / total_n)*100, 1)
 
