@@ -8,6 +8,7 @@ makefreqs <- function(df, var, maxrow, trim){
     }
   }
 
+  # Build frequency table
   res <- tbl_df(df) %>%
     group_by_(var) %>%
     summarise(Freq = n())
@@ -16,34 +17,25 @@ makefreqs <- function(df, var, maxrow, trim){
   class(res[[var]])
   res[[var]] <- as.character(res[[var]])
 
+  # Get all labels even if no cases
   if(!is.null(attributes(df[[var]])$labels)){
 
     tmp <- c(as.vector(attributes(df[[var]])$labels), "",  NA)
 
+    # flag user missing labels
     if(!is.null(attributes(df[[var]])$is_na)){
       isna <- c(as.vector(attributes(df[[var]])$is_na), TRUE, TRUE)
     } else {
-
+      isna <- c(rep(FALSE, length(as.vector(attributes(df[[var]])$labels))), TRUE, TRUE)
     }
-
-
-
-
-    tmp <- data.frame(tmp, isna, stringsAsFactors = F)
-    names(tmp) <- c(var, "missing")
-    #   class(tmp[[1]]) <- class(res[[var]])
-    # res <- left_join(expand.grid(tmp), res)
-    # res <- full_join(res, expand.grid(tmp, stringsAsFactors = F), by = var)
-    res <- full_join(res, tmp, by = var)
-
-
   } else {
-    tmp <-c("",  NA)
-    tmp <- list(tmp)
-    names(tmp) <- var
-    #   class(tmp[[1]]) <- class(res[[var]])
-    res <- full_join(res, expand.grid(tmp, stringsAsFactors = F), by = var)
+    tmp <- c("",  NA)
+    isna <- c(TRUE, TRUE)
   }
+
+  tmp <- data.frame(tmp, isna, stringsAsFactors = F)
+  names(tmp) <- c(var, "missing")
+  res <- full_join(res, tmp, by = var)
 
   # reorder and put blank and NA at end
   res[["missing"]][is.na(res[["missing"]])] <- FALSE
@@ -60,40 +52,8 @@ makefreqs <- function(df, var, maxrow, trim){
 
   res <- rbind(res_v, res_m)
 
-  # # res <- arrange(res, res[[var]])
-  # #new gtools order
-  # res <- res[mixedorder(res[[var]]), ]
-  # if (any(grepl("^$", res[[var]]))){
-  #   indx <- which(grepl("^$", res[[var]]))
-  #   if (indx %in% 1){
-  #     if(nrow(res) %in% 2){
-  #       res
-  #     } else {
-  #       res <- rbind(res[2:nrow(res), ], res[1, ])
-  #     }
-  #   } else if (indx %in% nrow(res)){
-  #     res
-  #   } else {
-  #     res <- rbind(res[1:(indx-1), ], res[(indx+1):nrow(res), ], res[indx, ])
-  #   }
-  # }
-  #
-  # if (any(is.na(res[[var]]))){
-  #   indx <- which(is.na(res[[var]]))
-  #   if (indx %in% 1){
-  #     if(nrow(res) %in% 2){
-  #       res
-  #     } else {
-  #       res <- rbind(res[2:nrow(res), ], res[1, ])
-  #     }
-  #
-  #   } else if (indx %in% nrow(res)){
-  #     res
-  #   } else {
-  #     res <- rbind(res[1:(indx-1), ], res[(indx+1):nrow(res), ], res[indx, ])
-  #   }
-  # }
 
+  # clean up na counts
   res$Freq[is.na(res$Freq)] <- 0
   res[[var]][res[[var]] %in% ""] <- "<blank>"
 
@@ -103,7 +63,6 @@ makefreqs <- function(df, var, maxrow, trim){
 
   res <- res[, c(var, "label", "Freq", "missing")]
 
-  # valid_n <- ifelse(nrow(res) %in% 2, 0, sum(res$Freq[1:(nrow(res)-2)]))
   valid_n <- sum(res$Freq[res$missing %in% FALSE])
   total_n <- sum(res$Freq)
 
@@ -133,7 +92,6 @@ makefreqs <- function(df, var, maxrow, trim){
 
   # Update Cumulative Percent
   if(!nrow(res) %in% 4){
-    # res[["Cumulative Percent"]] <- c(dec_dig(cumsum(res[1:(nrow(res)-4), "Valid Percent"]), 1), rep("", 4)) # rounding errors
     res[["Cumulative Percent"]] <- c(dec_dig(cumsum(as.numeric(res[res$missing %in% FALSE, "Freq"]) / valid_n *100), 1),
                                      rep("", nrow(res[res$missing %in% TRUE,]) + 2))
   } else {
