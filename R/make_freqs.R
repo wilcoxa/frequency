@@ -9,12 +9,8 @@ makefreqs <- function(df, var, maxrow, trim){
   }
 
   # Build frequency table
-  res <- tbl_df(df) %>%
-    group_by_(var) %>%
-    summarise(Freq = n())
-
-  res[[var]] <- as.vector(res[[var]])
-  class(res[[var]])
+  res <- as.data.frame(table(df[[var]], useNA = "always"), stringsAsFactors = FALSE)
+  names(res) <- c(var, "Freq")
   res[[var]] <- as.character(res[[var]]) # Need to sort out scietific notation
 
   # Get all labels even if no cases
@@ -35,8 +31,7 @@ makefreqs <- function(df, var, maxrow, trim){
 
   tmp <- data.frame(tmp, isna, stringsAsFactors = F)
   names(tmp) <- c(var, "missing")
-  res <- full_join(res, tmp, by = var)
-
+  res <- merge(res, tmp, by = var, all = T)
 
   sort_by <- switch(getOption("frequencies_sort_by"),
                     "value" = var,
