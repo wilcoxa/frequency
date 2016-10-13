@@ -1,5 +1,5 @@
 makefreqs <- function(df, var, maxrow, trim){
-  cat(".")
+  # cat(".")
 
   # remove whitespace option
   if (trim %in% TRUE){

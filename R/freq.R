@@ -50,7 +50,8 @@ freq <- function(df, fn = NULL, maxrow = 30, trim = TRUE, type = "html", templat
   })
 
   # create a list of frequencies
-  all_freqs <- lapply(names(df), function(x, df1 = as.data.frame(df), maxrow1 = maxrow, trim1 = trim){
+  message("Building tables")
+  all_freqs <- lapply_pb(names(df), function(x, df1 = as.data.frame(df), maxrow1 = maxrow, trim1 = trim){
     makefreqs(df1, x, maxrow1, trim1)
   })
 

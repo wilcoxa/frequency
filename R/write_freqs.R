@@ -43,8 +43,12 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
 
   flextables <- NULL
 
+  # for (i in 1:length(all_freqs)){
+  # cat(".")
+  message("Writing tables")
+  pb <- txtProgressBar(min = 0, max = length(all_freqs), style = 3)
   for (i in 1:length(all_freqs)){
-    cat(".")
+    setTxtProgressBar(pb, i)
 
     miss_row <- which(all_freqs[[i]][[1]] %in% "Missing") - 1
     tmp <- all_freqs[[i]]
@@ -115,6 +119,7 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
       mydd <- addLinkItem(mydd, label = paste0(names(all_freqs[i])), paste0("#", names(all_freqs[i])))
     }
   }
+  close(pb)
 
   if(output_type == "html"){
     mymenu <- addLinkItem(mymenu, dd = mydd)
@@ -125,13 +130,15 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
   writeDoc(outdoc, file = outpth)
 
   # Open the document directly from R if allowed
-  if(is.null(fn)){
-    if (getOption("frequencies_open_output")){
-      browseURL(outpth)
+  if (getOption("frequencies_open_output")){
+    browseURL(outpth)
+  } else {
+    if(is.null(fn)){
+      message("Temporary file saved to: ", outpth)
     } else {
-      message("temporary file saved to: ", outpth)
-      message("use options(frequencies_open_output = TRUE) to open by default")
+      message("File saved to: ", outpth)
     }
+    message("To open by default use: options(frequencies_open_output = TRUE)")
   }
 
   invisible(list("tables" = all_freqs, "flextables" = flextables))
