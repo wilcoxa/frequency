@@ -1,3 +1,4 @@
+Sys.setenv("R_TESTS" = "")
 library(haven)
 library(foreign)
 library(frequencies)
@@ -44,9 +45,21 @@ test_that("Individual tables", {
 # really the output should be the same regardless
 context("Package comparison")
 test_that("foreign vs haven", {
-  print(freq(haven_df)[[1]][[4]])
-  print(freq(foreign_df)[[1]][[4]])
-  expect_equal(freq(haven_df), freq(foreign_df))
+
+  expect_equal(freq(haven_df), freq(foreign_list))
+  expect_equal(freq(haven_df$id), freq(foreign_list$id))
+
+  # expect_equal(freq(haven_df$test_numeric), ffreq(haven_df$test_numeric)) # variable label dropped on subset
+  x <- freq(haven_df$test_numeric); y <- freq(haven_df$test_numeric)
+  names(x) <- NULL; names(y) <- NULL
+  expect_equal(x, y)
+  # expect_equal(freq(haven_df$test_numeric_labelled), freq(foreign_list$test_numeric_labelled)) # as above
+  x <- freq(haven_df$test_numeric_labelled); y <- freq(haven_df$test_numeric_labelled)
+  names(x) <- NULL; names(y) <- NULL
+  expect_equal(x, y)
+
+  expect_equal(freq(haven_df$test_character), freq(foreign_list$test_character))
+  expect_equal(freq(haven_df$test_character_labelled), freq(foreign_list$test_character_labelled))
 })
 
 

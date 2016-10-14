@@ -1,4 +1,3 @@
-
 # write out
 write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
 

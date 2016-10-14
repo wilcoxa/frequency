@@ -1,7 +1,7 @@
 makefreqs <- function(df, var, maxrow, trim){
-
   # remove whitespace option
   if (trim %in% TRUE){
+    if(is.factor(df[[var]])){df[[var]] <- as.character(df[[var]])}
     if(is.character(df[[var]])){
       df[[var]] <- gsub("^\\s+|\\s+$", "", df[[var]]) # numeric removing attributes...
     }

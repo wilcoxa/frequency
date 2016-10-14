@@ -36,9 +36,16 @@ freq <- function(df, fn = NULL, maxrow = 30, trim = TRUE, type = "html", templat
     stop("maximum rows should be more than 3")
   }
 
-  # coerce to dataframe
-  if(!"data.frame" %in% class(df)){
-    try(df <- as.data.frame(df))
+  # coerce vector to dataframe
+  if(!is.list(df)){
+    df <- as.data.frame(df)
+  }
+
+  # conversion of variable label attributes for foreign
+  if (!is.null(attributes(df)$variable.labels)){
+    for(i in seq_along(df)){
+      attr(df[[i]], "label") <- attr(df, "variable.labels")[[i]]
+    }
   }
 
   # conversion of value label attributes for foreign
@@ -48,13 +55,6 @@ freq <- function(df, fn = NULL, maxrow = 30, trim = TRUE, type = "html", templat
     }
     x
   })
-
-  # conversion of variable label attributes for foreign
-  if (!is.null(attributes(df)$variable.labels)){
-    for(i in seq_along(df)){
-      attr(df[[i]], "label") <- attr(df, "variable.labels")[[i]]
-    }
-  }
 
   # create a list of frequencies
   message("Building tables")
