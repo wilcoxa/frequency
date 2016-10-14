@@ -139,6 +139,12 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
     message("To open by default use: options(frequencies_open_output = TRUE)")
   }
 
-  invisible(list("tables" = all_freqs, "flextables" = flextables))
+  # return tables invisibly
+  if(getOption("frequencies_output_flextables")){
+    return(invisible(list("tables" = all_freqs, "flextables" = flextables)))
+  } else {
+    return(invisible(list(all_freqs)))
+  }
+
 
 }

@@ -50,7 +50,7 @@ freq <- function(df, fn = NULL, maxrow = 30, trim = TRUE, type = "html", templat
   })
 
   # conversion of variable label attributes for foreign
-  if (!is.null(attributes(x)$variable.labels)){
+  if (!is.null(attributes(df)$variable.labels)){
     for(i in seq_along(df)){
       attr(df[[i]], "label") <- attr(df, "variable.labels")[[i]]
     }
