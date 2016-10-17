@@ -3,11 +3,11 @@ Type: Package
 Title: Easy Frequency Tables
 Version: 0.1.1.9000
 Author: Alistair Wilcox
-Maintainer: Alistair Wilcox <wilcoxa@gmail.com>
+Maintainer: Alistair Wilcox <wilcoxafp@gmail.com>
 Description: The frequencies package comprises functions to generate SPSS
              styled frequency tables.
 Imports: gtools, ReporteRs
-Suggests: foreign, haven, testthat
+Suggests: foreign, haven, testthat, covr
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
