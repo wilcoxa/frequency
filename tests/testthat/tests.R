@@ -10,11 +10,11 @@ Sys.setlocale("LC_COLLATE", "C") # R CMD check uses this default
 print(Sys.getlocale(category = "LC_ALL"))
 
 
-test_spss <- "test_spss.sav"
+test_spss <- "test_spss_unicode.sav"
 
 haven_df <- read_sav(test_spss)
-foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE))
-foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE))
+foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE, reencode='utf-8'))
+foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE, reencode='utf-8'))
 
 dat <- haven_df
 

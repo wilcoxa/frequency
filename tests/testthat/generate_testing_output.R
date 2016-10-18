@@ -10,11 +10,11 @@ write0 <- function(...){
   write(paste(...), file = fn, append = TRUE)
 }
 
-test_spss <- "tests/testthat/test_spss.sav"
+test_spss <- "tests/testthat/test_spss_unicode.sav"
 
 raw_haven_df <- read_sav(test_spss)
-raw_foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE))
-raw_foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE))
+raw_foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE, reencode='utf-8'))
+raw_foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE, reencode='utf-8'))
 
 save(raw_haven_df, raw_foreign_df, raw_foreign_list, file = "tests/testthat/ImportData.RData")
 
