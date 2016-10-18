@@ -31,7 +31,7 @@ write0("load('ImportData.RData')")
 #-------------------------------------------------------------------------------
 
 # Frequency tables
-dat <- raw_haven_df
+dat <- raw_foreign_list
 
 raw_all <- freq(dat)
 raw_id <- freq(dat$id)
