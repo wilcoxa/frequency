@@ -7,7 +7,7 @@ Maintainer: Alistair Wilcox <wilcoxafp@gmail.com>
 Description: The frequencies package comprises functions to generate SPSS
              styled frequency tables.
 Imports: gtools, ReporteRs
-Suggests: foreign, haven, testthat, covr
+Suggests: foreign, haven, testthat, covr, shiny, utils
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1

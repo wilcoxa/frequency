@@ -1,9 +1,10 @@
-Sys.setenv("R_TESTS" = "")
 library(haven)
 library(foreign)
 library(frequencies)
 options(frequencies_open_output = FALSE)
 options(frequencies_output_flextables = FALSE)
+
+print(Sys.getlocale(category = "LC_ALL"))
 
 test_spss <- "test_spss.sav"
 

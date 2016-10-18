@@ -3,6 +3,8 @@ library(foreign)
 options(frequencies_open_output = FALSE)
 options(frequencies_output_flextables = FALSE)
 
+Sys.setlocale("LC_COLLATE", "C") # R CMD check uses this default
+
 write0 <- function(...){
   write(paste(...), file = fn, append = TRUE)
 }
