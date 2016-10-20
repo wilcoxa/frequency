@@ -5,7 +5,9 @@ Version: 0.1.1.9000
 Author: Alistair Wilcox
 Maintainer: Alistair Wilcox <wilcoxafp@gmail.com>
 Description: The frequencies package comprises functions to generate SPSS
-             styled frequency tables.
+             styled frequency tables. Frequency tables are generated with
+             variable and value label attributes where applicable with html
+             output for easy sharing and distribution.
 Imports: gtools, ReporteRs
 Suggests: foreign, haven, testthat, covr, shiny, utils
 License: MIT + file LICENSE

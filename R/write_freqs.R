@@ -142,7 +142,7 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
   if(getOption("frequencies_output_flextables")){
     return(invisible(list("tables" = all_freqs, "flextables" = flextables)))
   } else {
-    return(invisible(list(all_freqs)))
+    return(invisible(all_freqs))
   }
 
 
