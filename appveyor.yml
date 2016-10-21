@@ -13,14 +13,14 @@ install:
 # Adapt as necessary starting from here
 
 environment:
-    matrix:
-        - JAVA_HOME: C:\Program Files\Java\jdk1.7.0
-        - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+
     R_INSTALL_ARGS: --no-multiarch
+
 
 
 build_script:
   - travis-tool.sh install_deps
+  - set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.8.0\jre
 
 test_script:
   - travis-tool.sh run_tests
