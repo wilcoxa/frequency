@@ -2,4 +2,7 @@
 
 export(freq)
 import(ReporteRs)
-import(gtools)
+importFrom(gtools,mixedorder)
+importFrom(utils,browseURL)
+importFrom(utils,setTxtProgressBar)
+importFrom(utils,txtProgressBar)

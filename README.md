@@ -4,8 +4,8 @@
 
 # frequencies
 
-The goal of frequencies is to provide quick and easy frequency tables from SPSS 
-and other data files in a format that is familar to SPSS users. Frequencies are 
+The goal of frequencies is to provide quick and easy frequency tables from SPSS, SAS 
+and other data files in a format that is familar to SPSS and SAS users. Frequencies are 
 generated with variable labels and value labels where applicable. 
 
 This package uses David Gohel's [ReporteRs](http://davidgohel.github.io/ReporteRs/) package to generate html output to 
@@ -26,6 +26,7 @@ devtools::install_github("wilcoxa/frequencies")
 Using foreign:
 
 ```R
+library(frequencies)
 library(foreign)
 dat <- read.spss("mydat.sav")
 
@@ -38,6 +39,7 @@ freq(dat[3:5]) # specific variables
 ```
 Using haven:
 ```R
+library(frequencies)
 library(haven)
 dat <- read_spss("mydat.sav")
 

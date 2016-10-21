@@ -10,7 +10,8 @@
 #' @docType package
 #' @name frequencies
 #' @import ReporteRs
-#' @import gtools
+#' @importFrom gtools mixedorder
+#' @importFrom utils browseURL setTxtProgressBar txtProgressBar
 NULL
 
 
