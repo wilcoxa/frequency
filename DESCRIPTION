@@ -12,6 +12,7 @@ Depends: R (>= 3.0),
          ReporteRs
 Imports: gtools, utils
 Suggests: foreign, haven, testthat, covr, shiny
+SystemRequirements: java (>= 1.6)
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 5.0.1
