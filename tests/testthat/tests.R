@@ -37,6 +37,7 @@ test_that("Loading haven", {
 
   #haven reading in as NAN on travis
   skip_on_travis()
+  skip_on_appveyor()
     print(haven_df)
     print(str(haven_df))
     print(raw_haven_df)
@@ -105,6 +106,7 @@ test_that("foreign_df vs foreign_list", {
 test_that("foreign vs haven", {
 
   skip_on_travis()
+  skip_on_appveyor()
   expect_equal(freq(haven_df), freq(foreign_list))
   expect_equal(freq(haven_df$id), freq(foreign_list$id))
 
