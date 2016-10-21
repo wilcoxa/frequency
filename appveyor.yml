@@ -20,6 +20,7 @@ environment:
 
 build_script:
   - travis-tool.sh install_deps
+  - R -e "install.packages('rJava', repos = 'http://cran.us.r-project.org', INSTALL_opts='--no-multiarch')"
 
 test_script:
   - travis-tool.sh run_tests
