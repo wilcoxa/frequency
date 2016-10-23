@@ -1,4 +1,3 @@
-library(haven)
 library(foreign)
 options(frequencies_open_output = FALSE)
 options(frequencies_output_flextables = FALSE)
@@ -9,10 +8,8 @@ Sys.setlocale("LC_COLLATE", "C") # R CMD check uses this default
 # Sys.setlocale("LC_COLLATE", "English_United States.1252")
 print(Sys.getlocale(category = "LC_ALL"))
 
-
 test_spss <- "test_spss_unicode.sav"
 
-haven_df <- read_sav(test_spss)
 foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE, reencode='utf-8'))
 foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE, reencode='utf-8'))
 
@@ -31,19 +28,6 @@ test_that("Loading foreign", {
   print(str(raw_foreign_df))
   expect_equal(foreign_df, raw_foreign_df)
   expect_equal(foreign_list, raw_foreign_list)
-})
-
-test_that("Loading haven", {
-
-  #haven reading in as NAN on travis
-  skip_on_travis()
-  skip_on_appveyor()
-    print(haven_df)
-    print(str(haven_df))
-    print(raw_haven_df)
-    print(str(raw_haven_df))
-    expect_equal(haven_df, raw_haven_df)
-
 })
 
 #-------------------------------------------------------------------------------
@@ -103,26 +87,6 @@ test_that("foreign_df vs foreign_list", {
 })
 
 
-test_that("foreign vs haven", {
-
-  skip_on_travis()
-  skip_on_appveyor()
-  expect_equal(freq(haven_df), freq(foreign_list))
-  expect_equal(freq(haven_df$id), freq(foreign_list$id))
-
-  # expect_equal(freq(haven_df$test_numeric), ffreq(haven_df$test_numeric)) # variable label dropped on subset
-  x <- freq(haven_df$test_numeric); y <- freq(haven_df$test_numeric)
-  names(x) <- NULL; names(y) <- NULL
-  expect_equal(x, y)
-  # expect_equal(freq(haven_df$test_numeric_labelled), freq(foreign_list$test_numeric_labelled)) # as above
-  x <- freq(haven_df$test_numeric_labelled); y <- freq(haven_df$test_numeric_labelled)
-  names(x) <- NULL; names(y) <- NULL
-  expect_equal(x, y)
-
-  expect_equal(freq(haven_df$test_character), freq(foreign_list$test_character))
-  expect_equal(freq(haven_df$test_character_labelled), freq(foreign_list$test_character_labelled))
-
-})
 
 
 
