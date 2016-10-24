@@ -56,6 +56,18 @@ freq <- function(df, fn = NULL, maxrow = 30, trim = TRUE, type = "html", templat
     x
   })
 
+  # conversion of missing value label attributes for foreign
+  if(!is.null(attributes(df)$missings)){
+    miss <- attributes(df)$missings
+
+    for(i in seq_along(miss)){
+      if (!is.null(miss[[i]]$value)){
+        ind <- which(attributes(df[[i]])$labels %in% miss[[i]]$value)
+        attr(df[[i]], "is_na")[ind] <- TRUE
+      }
+    }
+  }
+
   # create a list of frequencies
   message("Building tables")
   all_freqs <- lapply_pb(names(df), function(x, df1 = as.data.frame(df), maxrow1 = maxrow, trim1 = trim){

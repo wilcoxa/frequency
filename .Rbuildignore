@@ -4,3 +4,4 @@
 ^cran-comments\.md$
 example.html
 ^appveyor\.yml$
+todo.md
