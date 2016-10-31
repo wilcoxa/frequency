@@ -12,6 +12,8 @@ generated with variable labels and value labels where applicable.
 This package uses David Gohel's [ReporteRs](http://davidgohel.github.io/ReporteRs/) package to generate html output to 
 easily view frequency results.
 
+[**Example**](https://github.com/wilcoxa/frequencies/example/example.html) 
+
 Features
 Easily review an entire dataset with one line
 Includes categories included in the label attributes, even if 0 cases exist in the dataset

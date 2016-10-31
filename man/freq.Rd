@@ -48,10 +48,27 @@ out <- freq(big5)
 out$tables[1] # standard output to console
 out$flextables[4] # flextable output to Viewer in RStudio
 
-#Suppress Viewer output
+# Suppress Viewer output
 options(frequencies_output_flextables = FALSE)
 x <- freq(big5)
 x[5] # standard print output
+
+# Supports label attributes from the package foreign package
+library(foreign)
+dat <- read.spss(myfile)
+freq(dat)
+# (Note: foreign may drop attributes when using to.data.frame = TRUE)
+df <- read.spss(myfile, to.data.frame = TRUE)
+freq(df)
+
+# Also supports label attributes from the haven package
+library(haven)
+dat <- read_spss(myfile)
+freq(dat)
+
+# as well as other data with no label attributes
+dat <- data.frame(id = 1:3, val = letters[1:3])
+freq(dat)
 
 }
 
