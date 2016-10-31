@@ -12,6 +12,19 @@ generated with variable labels and value labels where applicable.
 This package uses David Gohel's [ReporteRs](http://davidgohel.github.io/ReporteRs/) package to generate html output to 
 easily view frequency results.
 
+Features
+Easily review an entire dataset with one line
+Includes categories included in the label attributes, even if 0 cases exist in the dataset
+Checks for NA and blank cases to review any missing data
+User missing variables can be reported in missing category
+Allows labels for both string and numeric classes
+Suppresses printing of very long tables - defaults to top and bottom cases (can be changed with the maxrow option) 
+Supports label conventions from both foreign and haven packages
+html drop-down menu to goto specific variable in the dataset
+Progress bars 
+
+
+
 
 ## Installation
 

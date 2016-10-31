@@ -12,8 +12,33 @@
 #' @return A frequency table in html or doc format.
 #'
 #' @examples
-#' tmp <- c(1:3)
-#' freq(tmp)
+#'
+#' \dontrun{
+#' # Create frequency tables for the entire dataset
+#' freq(big5)
+#'
+#' # For specific variable/s
+#' freq(big5$race)
+#' freq(big5[4:6])
+#'
+#' # To automatically open html output in your browser use the following option:
+#' options(frequencies_open_output = TRUE)
+#' freq(big5[, c('gender', 'E1')])
+#'
+#' # To save the output specify the filename and format
+#' freq(big5, fn = "mydir/myfile.html")
+#'
+#' # Produce a list of tables and flextables
+#' out <- freq(big5)
+#' out$tables[1] # standard output to console
+#' out$flextables[4] # flextable output to Viewer in RStudio
+#'
+#' #Suppress Viewer output
+#' options(frequencies_output_flextables = FALSE)
+#' x <- freq(big5)
+#' x[5] # standard print output
+#'
+#' }
 #'
 #' @export
 freq <- function(df, fn = NULL, maxrow = 30, trim = TRUE, type = "html", template = NULL){
