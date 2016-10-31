@@ -5,3 +5,4 @@
 example.html
 ^appveyor\.yml$
 todo.md
+^data-raw$
