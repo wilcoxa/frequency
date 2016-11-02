@@ -13,7 +13,12 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
     outpth <- tempfile(fileext = file_extension)
     # on.exit(unlink(outpth))
   } else {
-    outpth <- file.path(paste0(fn, file_extension))
+    if (grepl(paste0(file_extension, "$"), fn)){
+      outpth <- file.path(fn)
+    } else {
+      outpth <- file.path(paste0(fn, file_extension))
+    }
+
   }
 
   #-------------------
