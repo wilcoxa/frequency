@@ -62,20 +62,28 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
 
   type <- tolower(type)
 
-  if(!type %in% c("html", "doc")){
+  if (type == "docx") type <- "doc"
+
+  if (!type %in% c("html", "doc")){
     stop("output type should be either html or doc")
   }
 
-  if(type %in% "html" & !is.null(template)){
+  if (type %in% "html" & !is.null(template)){
     warning("template can only be used with doc output")
   }
 
-  if(!is.numeric(maxrow)){
+  if (is.na(as.numeric(maxrow))){
     stop("maxrows should be numeric")
+  } else {
+    maxrow <- as.numeric(maxrow)
   }
 
-  if(maxrow <= 3){
+  if (maxrow <= 3){
     stop("maximum rows should be more than 3")
+  }
+
+  if (!trim %in% c(TRUE, FALSE)){
+    stop("trim whitespace option should be TRUE or FALSE")
   }
 
   # coerce vector to dataframe

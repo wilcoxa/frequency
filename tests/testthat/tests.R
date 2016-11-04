@@ -88,17 +88,108 @@ test_that("foreign_df vs foreign_list", {
 
 
 
-
+#-------------------------------------------------------------------------------
 
 context("Input assumptions")
 
-test_that("invalid maxrow specification", {
+test_that("Arguments - x = ", {
+  # dataframe
+  df <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
+  # no error
+  expect_error(freq(df), NA)
+
+  # list
+  dat <- list("a" = LETTERS[1:10], "b" = 1:10)
+  # no error
+  expect_error(freq(dat), NA)
+
+  # vector
+  vs <- LETTERS[1:10]
+  vn <- 1:10
+  # no error
+  expect_error(freq(vs), NA)
+  expect_error(freq(vn), NA)
+
+})
+
+test_that("Arguments - file = ", {
+  skip_on_cran()
+
+  dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
+  # expect_error(freq(dat, file = "")) # should be error?
+  # expect_error(freq(dat, file = NA)) # should be error?
+  # expect_error(freq(dat, file = ".html")) # should be error?
+  # expect_error(freq(dat, file = ".docx", type = "doc")) # should be error?
+
+  # no errors
+  expect_error(freq(dat, file = "asdf"), NA)
+  expect_error(freq(dat, file = "1234"), NA)
+  expect_error(freq(dat, file = "aaa.html"), NA)
+  expect_error(freq(dat, file = "bbb.docx", type = "doc"), NA)
+
+  file.remove("asdf.html")
+  file.remove("1234.html")
+  file.remove("aaa.html")
+  file.remove("bbb.docx")
+  unlink("css", recursive=TRUE)
+  unlink("fonts", recursive=TRUE)
+  unlink("js", recursive=TRUE)
+
+
+})
+
+test_that("Arguments - maxrow = ", {
   dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
   expect_error(freq(dat, maxrow = 1))
   expect_error(freq(dat, maxrow = -11))
-  expect_error(freq(dat, maxrow = "a"))
-  # expect_warning(freq(dat, maxrow = 30:40))
+  expect_error(suppress_warnings(freq(dat, maxrow = "a")))
+
+  # no errors
+  expect_error(freq(dat, maxrow = "5"), NA)
+  expect_error(freq(dat, maxrow = "10"), NA)
+  expect_error(freq(dat, maxrow = 5), NA)
+  expect_error(freq(dat, maxrow = 10), NA)
+  expect_error(freq(dat, maxrow = 100), NA)
+
 })
+
+test_that("Arguments - trim = ", {
+  dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
+  expect_error(freq(dat, trim = "asdf"))
+  expect_error(freq(dat, trim = ""))
+  expect_error(freq(dat, trim = NA))
+
+  # no errors
+  expect_error(freq(dat, trim = T), NA)
+  expect_error(freq(dat, trim = TRUE), NA)
+  expect_error(freq(dat, trim = "TRUE"), NA)
+  expect_error(freq(dat, trim = F), NA)
+  expect_error(freq(dat, trim = FALSE), NA)
+  expect_error(freq(dat, trim = "FALSE"), NA)
+})
+
+test_that("Arguments - type = ", {
+  dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
+  expect_error(freq(dat, type = "asdf"))
+  expect_error(freq(dat, type = ""))
+  expect_error(freq(dat, type = NA))
+
+  # no errors
+  expect_error(freq(dat, type = "doc"), NA)
+  expect_error(freq(dat, type = "docx"), NA)
+  expect_error(freq(dat, type = "html"), NA)
+  expect_error(freq(dat, type = "DOC"), NA)
+  expect_error(freq(dat, type = "DOCX"), NA)
+  expect_error(freq(dat, type = "HTML"), NA)
+
+})
+
+test_that("Arguments - template = ", {
+
+})
+
+
+
 
 #-------------------------------------------------------------------------------
 #----------------------------------------------------------------------------end
