@@ -1,5 +1,5 @@
 # write out
-write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
+write_freqs <- function(all_freqs, file = NULL, output_type = "html"){
 
   if(output_type == "html"){
     outdoc <- bsdoc()
@@ -9,14 +9,14 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
     file_extension <- ".docx"
   }
 
-  if(is.null(fn)){
+  if(is.null(file)){
     outpth <- tempfile(fileext = file_extension)
     # on.exit(unlink(outpth))
   } else {
-    if (grepl(paste0(file_extension, "$"), fn)){
-      outpth <- file.path(fn)
+    if (grepl(paste0(file_extension, "$"), file)){
+      outpth <- file.path(file)
     } else {
-      outpth <- file.path(paste0(fn, file_extension))
+      outpth <- file.path(paste0(file, file_extension))
     }
 
   }
@@ -135,7 +135,7 @@ write_freqs <- function(all_freqs, fn = NULL, output_type = "html"){
   if (getOption("frequencies_open_output")){
     browseURL(outpth)
   } else {
-    if(is.null(fn)){
+    if(is.null(file)){
       message("Temporary file saved to: ", outpth)
     } else {
       message("File saved to: ", outpth)

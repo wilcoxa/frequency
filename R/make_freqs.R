@@ -1,27 +1,27 @@
-makefreqs <- function(df, var, maxrow, trim){
+makefreqs <- function(x, var, maxrow, trim){
   # remove whitespace option
   if (trim %in% TRUE){
-    if(is.factor(df[[var]])){df[[var]] <- as.character(df[[var]])}
-    if(is.character(df[[var]])){
-      df[[var]] <- gsub("^\\s+|\\s+$", "", df[[var]]) # numeric removing attributes...
+    if(is.factor(x[[var]])){x[[var]] <- as.character(x[[var]])}
+    if(is.character(x[[var]])){
+      x[[var]] <- gsub("^\\s+|\\s+$", "", x[[var]]) # numeric removing attributes...
     }
   }
 
   # Build frequency table
-  res <- as.data.frame(table(df[[var]], useNA = "always"), stringsAsFactors = FALSE)
+  res <- as.data.frame(table(x[[var]], useNA = "always"), stringsAsFactors = FALSE)
   names(res) <- c(var, "Freq")
   res[[var]] <- as.character(res[[var]]) # Need to sort out scietific notation
 
   # Get all labels even if no cases
-  if(!is.null(attributes(df[[var]])$labels)){
+  if(!is.null(attributes(x[[var]])$labels)){
 
-    tmp <- c(as.vector(attributes(df[[var]])$labels), "",  NA)
+    tmp <- c(as.vector(attributes(x[[var]])$labels), "",  NA)
 
     # flag user missing labels
-    if(!is.null(attributes(df[[var]])$is_na)){
-      isna <- c(as.vector(attributes(df[[var]])$is_na), TRUE, TRUE)
+    if(!is.null(attributes(x[[var]])$is_na)){
+      isna <- c(as.vector(attributes(x[[var]])$is_na), TRUE, TRUE)
     } else {
-      isna <- c(rep(FALSE, length(as.vector(attributes(df[[var]])$labels))), TRUE, TRUE)
+      isna <- c(rep(FALSE, length(as.vector(attributes(x[[var]])$labels))), TRUE, TRUE)
     }
   } else {
     tmp <- c("",  NA)
@@ -57,7 +57,7 @@ makefreqs <- function(df, var, maxrow, trim){
   res$Freq[is.na(res$Freq)] <- 0
   res[[var]][res[[var]] %in% ""] <- "<blank>"
 
-  res[["label"]] <- sapply(res[[var]], function(y, z = attributes(df[[var]])$labels){
+  res[["label"]] <- sapply(res[[var]], function(y, z = attributes(x[[var]])$labels){
     ret <- ifelse(y %in% z, names(z)[z %in% y], "")
   })
 

@@ -4,13 +4,13 @@
 \alias{freq}
 \title{Frequencies}
 \usage{
-freq(df, fn = NULL, maxrow = 30, trim = TRUE, type = "html",
+freq(x, file = NULL, maxrow = 30, trim = TRUE, type = "html",
   template = NULL)
 }
 \arguments{
-\item{df}{Input dataframe.}
+\item{x}{Input data. Can be a dataframe, list or vector.}
 
-\item{fn}{File name. Optional file name if wanting to save the output.}
+\item{file}{File name. Optional file name to save the output.}
 
 \item{maxrow}{Maximum number of rows to display in each frequency table.}
 
@@ -41,7 +41,7 @@ options(frequencies_open_output = TRUE)
 freq(big5[, c('gender', 'E1')])
 
 # To save the output specify the filename and format
-freq(big5, fn = "mydir/myfile.html")
+freq(big5, file = "mydir/myfile.html")
 
 # Produce a list of tables and flextables
 out <- freq(big5)
