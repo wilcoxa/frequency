@@ -25,10 +25,10 @@ write_freqs <- function(all_freqs, file = NULL, output_type = "html"){
   # outdoc <<- bsdoc() # for html
   # assign(outdoc, bsdoc(), envir = .GlobalEnv)
 
-  if(output_type == "html"){
-    mymenu <- BootstrapMenu(title = 'Frequencies')
-    mydd <- DropDownMenu(label = 'Variables')
-  }
+  # if(output_type == "html"){
+  #   mymenu <- BootstrapMenu(title = 'Frequencies')
+  #   mydd <- DropDownMenu(label = 'Variables')
+  # }
 
   # formatting defaults
   txt_italics <- textProperties(font.style = "italic")
@@ -118,14 +118,14 @@ write_freqs <- function(all_freqs, file = NULL, output_type = "html"){
     addParagraph(outdoc, parbreak)
 
     if(output_type == "html"){
-      mydd <- addLinkItem(mydd, label = paste0(names(all_freqs[i])), paste0("#", names(all_freqs[i])))
+      # mydd <- addLinkItem(mydd, label = paste0(names(all_freqs[i])), paste0("#", names(all_freqs[i])))
     }
   }
   close(pb)
 
   if(output_type == "html"){
-    mymenu <- addLinkItem(mymenu, dd = mydd)
-    outdoc <- addBootstrapMenu(outdoc, mymenu)
+    # mymenu <- addLinkItem(mymenu, dd = mydd)
+    # outdoc <- addBootstrapMenu(outdoc, mymenu)
   }
 
   # write the doc
