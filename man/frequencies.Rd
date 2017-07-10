@@ -13,7 +13,4 @@ The frequencies package comprises functions to generate SPSS like frequencies in
 
 \code{\link{freq}}
 }
-\seealso{
-\code{\link[ReporteRs]{ReporteRs}} \code{\link[rtable]{freqtable}}
-}
 

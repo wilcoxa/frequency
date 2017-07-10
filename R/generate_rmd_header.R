@@ -3,12 +3,15 @@ paste0(
 "
 ---
 title: 'Frequencies'
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 <style type=\"text/css\">
 .main-container {
-max-width: 1280px;
+max-width: 940px;
 }
 </style>
 

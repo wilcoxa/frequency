@@ -1,7 +1,7 @@
 Package: frequencies
 Type: Package
 Title: Easy Frequency Tables
-Version: 0.1.1.9000
+Version: 0.1.1.9001
 Author: Alistair Wilcox
 Maintainer: Alistair Wilcox <wilcoxafp@gmail.com>
 Description: The frequencies package comprises functions to generate SPSS/SAS
@@ -9,12 +9,12 @@ Description: The frequencies package comprises functions to generate SPSS/SAS
              variable and value label attributes where applicable with html
              output to quickly examine datasets.
 Depends: R (>= 3.0),
-         ReporteRs
+         rmarkdown, knitr, DT
 Imports: gtools, utils
 Suggests: foreign, haven, testthat, covr, shiny
 SystemRequirements: java (>= 1.6)
 License: GPL-3
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 URL: https://github.com/wilcoxa/frequencies
 BugReports: https://github.com/wilcoxa/frequencies/issues

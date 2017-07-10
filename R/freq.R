@@ -31,12 +31,7 @@
 #' # Produce a list of tables and flextables
 #' out <- freq(big5)
 #' out$tables[1] # standard output to console
-#' out$flextables[4] # flextable output to Viewer in RStudio
 #'
-#' # Suppress Viewer output
-#' options(frequencies_output_flextables = FALSE)
-#' x <- freq(big5)
-#' x[5] # standard print output
 #'
 #' # Supports label attributes from the package foreign package
 #' library(foreign)
@@ -143,17 +138,14 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
   names(all_freqs) <- paste0(varnames, ": ", labels)
   names(all_freqs) <- gsub("^\\s+|\\s+$", "", names(all_freqs))
 
-  # write out
-  # write_freqs(all_freqs, file, type)
-  # all_freqs <<- all_freqs
-
   pths <- create_markdown(all_freqs)
 
   rmarkdown::render(input = pths$Rmd_pth,
                     output_file = pths$html_pth,
-                    output_format = "html_document")
+                    output_format = "html_document",
+                    quiet = TRUE)
 
   print(pths$html_pth)
   browseURL(pths$html_pth)
-  invisible()
+  invisible(all_freqs)
 }

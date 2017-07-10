@@ -46,12 +46,7 @@ freq(big5, file = "mydir/myfile.html")
 # Produce a list of tables and flextables
 out <- freq(big5)
 out$tables[1] # standard output to console
-out$flextables[4] # flextable output to Viewer in RStudio
 
-# Suppress Viewer output
-options(frequencies_output_flextables = FALSE)
-x <- freq(big5)
-x[5] # standard print output
 
 # Supports label attributes from the package foreign package
 library(foreign)
@@ -73,4 +68,3 @@ freq(dat)
 }
 
 }
-
