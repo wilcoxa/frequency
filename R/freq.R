@@ -144,7 +144,16 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
   names(all_freqs) <- gsub("^\\s+|\\s+$", "", names(all_freqs))
 
   # write out
-  write_freqs(all_freqs, file, type)
+  # write_freqs(all_freqs, file, type)
+  # all_freqs <<- all_freqs
 
+  pths <- create_markdown(all_freqs)
 
+  rmarkdown::render(input = pths$Rmd_pth,
+                    output_file = pths$html_pth,
+                    output_format = "html_document")
+
+  print(pths$html_pth)
+  browseURL(pths$html_pth)
+  invisible()
 }
