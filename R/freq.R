@@ -145,7 +145,17 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
                     output_format = "html_document",
                     quiet = TRUE)
 
-  print(pths$html_pth)
-  browseURL(pths$html_pth)
+  # Open the document directly from R if allowed
+  if (getOption("frequencies_open_output")){
+    browseURL(pths$html_pth)
+  } else {
+    if(is.null(file)){
+      message("Temporary file saved to: ", pths$html_pth)
+    } else {
+      message("File saved to: ", pths$html_pth)
+    }
+    message("To open by default use: options(frequencies_open_output = TRUE)")
+  }
+
   invisible(all_freqs)
 }

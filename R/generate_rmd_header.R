@@ -19,7 +19,7 @@ max-width: 940px;
 library('knitr')
 library('frequencies')
 library('DT')
-library('ggplot2')
+# library('ggplot2')
 knitr::opts_chunk$set(echo = TRUE)
 ",
 paste0("load('", out_RData, "')"),
