@@ -12,7 +12,7 @@ Depends: R (>= 3.0),
          rmarkdown, knitr, DT
 Imports: gtools, utils
 Suggests: foreign, haven, testthat, covr, shiny
-SystemRequirements: java (>= 1.6)
+SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 6.0.1

@@ -10,13 +10,22 @@ init:
 install:
   ps: Bootstrap
 
+cache:
+  - C:\Program Files (x86)\Pandoc\
+
 # Adapt as necessary starting from here
+
+before_test:
+  - ps: >-
+      if (-Not (Test-Path "C:\Program Files (x86)\Pandoc\")) {
+        cinst pandoc
+      }
+  - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
+  - pandoc -v
 
 environment:
 
     R_INSTALL_ARGS: --no-multiarch
-
-
 
 build_script:
   - travis-tool.sh install_deps
