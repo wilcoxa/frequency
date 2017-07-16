@@ -10,8 +10,8 @@ print(Sys.getlocale(category = "LC_ALL"))
 
 test_spss <- "test_spss_unicode.sav"
 
-foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE, reencode='utf-8'))
-foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE, reencode='utf-8'))
+foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE, reencode='utf-8', use.value.labels = F))
+foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE, reencode='utf-8', use.value.labels = F))
 
 dat <- foreign_list
 
