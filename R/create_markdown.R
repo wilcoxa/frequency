@@ -1,10 +1,10 @@
 create_markdown <- function(all_freqs){
 
-  # prepare temporary copy of data for markdawn
-  out_RData <- file.path(tempfile(fileext = ".RData"))
+  # prepare temporary copy of data for markdown
+  out_RData <- tempfile(fileext = ".RData")
   save(all_freqs, file = out_RData)
 
-  out_Rmd <- file.path(tempfile(fileext = ".Rmd"))
+  out_Rmd <- tempfile(fileext = ".Rmd")
 
   rmd_header <- generate_rmd_header(out_RData)
   write(rmd_header, file = out_Rmd)
@@ -18,7 +18,7 @@ create_markdown <- function(all_freqs){
 
   write(rmd_body, file = out_Rmd, append = T)
 
-  out_html <- file.path(tempfile(fileext = ".html"))
+  out_html <- tempfile(fileext = ".html")
 
   out <- list(RData_pth = out_RData,
               Rmd_pth = out_Rmd,

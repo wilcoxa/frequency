@@ -22,7 +22,7 @@ library('DT')
 # library('ggplot2')
 knitr::opts_chunk$set(echo = TRUE)
 ",
-paste0("load('", out_RData, "')"),
+gsub("\\\\", "/", paste0("load('", out_RData, "')")),
 "
 ```
 "
