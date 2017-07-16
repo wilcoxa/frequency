@@ -5,6 +5,7 @@ paste0(
 title: 'Frequencies'
 output:
   html_document:
+    smart: false
     toc: true
     toc_float: true
 ---
