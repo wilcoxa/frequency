@@ -6,12 +6,13 @@ paste0(
 
 # <div class = \"col-md-6\">
 "
+<h3 style=\"color:#428bca;font-weight:bold;\">", gsub("'", "", names(all_freqs[i])), "</h3>
+
 ```{r ", gsub("'", "", names(all_freqs[i])), ", echo=FALSE}",
 "
 DT::datatable(all_freqs[[", i, "]],
 rownames = FALSE,
-caption = '", gsub("'", "", names(all_freqs[i])),
-"',
+# caption = '", gsub("'", "", names(all_freqs[i])), "',
 style = 'bootstrap',
  options = list(pageLength = 500,
 dom = 't',
@@ -32,7 +33,8 @@ formatStyle(1:",  ncol(all_freqs[[i]]), ",
 )
 
 ```
-</div>")
+</div>
+<br>")
 
 # </div>
 # ")
