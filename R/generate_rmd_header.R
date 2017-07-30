@@ -1,4 +1,4 @@
-generate_rmd_header <- function(out_RData){
+generate_rmd_header <- function(out_RData, numcols){
 paste0(
 "
 ---
@@ -7,12 +7,17 @@ output:
   html_document:
     smart: false
     toc: true
-    toc_float: true
+",
+ifelse(numcols > 1, "", "    toc_float: true"),
+"
 ---
 
 <style type=\"text/css\">
 .main-container {
-max-width: 940px;
+  ",
+ifelse(numcols > 1, "max-width: 1600px;", "max-width: 940px;"),
+
+"
 }
 </style>
 

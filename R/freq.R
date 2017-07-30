@@ -130,6 +130,8 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
 
   })
 
+  all_vis <- lapply(all_freqs, make_vis)
+
   #   labels <- lapply(labels, function(x){
   #     x[is.null(x)] <- ""
   #     ifelse(x == 'NULL', "", x)
@@ -138,7 +140,10 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
   names(all_freqs) <- paste0(varnames, ": ", labels)
   names(all_freqs) <- gsub("^\\s+|\\s+$", "", names(all_freqs))
 
-  pths <- create_markdown(all_freqs)
+  # tmp <<- all_freqs
+  numcols <- 2
+
+  pths <- create_markdown(all_freqs, all_vis, numcols)
 
   rmarkdown::render(input = pths$Rmd_pth,
                     output_file = pths$html_pth,

@@ -1,12 +1,13 @@
-generate_rmd_chunk <- function(all_freqs, i){
-paste0(
-"
-<div class = \"row\">",
+generate_rmd_chunk <- function(all_freqs, all_charts, i){
 
-
-# <div class = \"col-md-6\">
+tab_txt <- paste0(
 "
-<h3 style=\"color:#428bca;font-weight:bold;\">", gsub("'", "", names(all_freqs[i])), "</h3>
+<div class = \"row\">
+
+<div class = \"col-md-6\">
+
+<h3 style=\"color:#428bca;font-weight:bold;\">",
+gsub("'", "", names(all_freqs[i])), "</h3>
 
 ```{r ", gsub("'", "", names(all_freqs[i])), ", echo=FALSE}",
 "
@@ -34,34 +35,23 @@ formatStyle(1:",  ncol(all_freqs[[i]]), ",
 
 ```
 </div>
-<br>")
+<br>
 
-# </div>
-# ")
+")
+
+
+chart_txt <- paste0(
+"
+<div class = \"col-md-6\">
+
+<br>
+```{r echo=FALSE}
+all_charts[[", i, "]]
+```
+</div>
+</div>
+")
+
+txt <- paste(tab_txt, chart_txt)
+
 }
-
-# c(
-# "
-# <div class = \"col-md-6\">
-#
-# ```{r ggpolt}
-#
-# tmp <- all_freqs[[1]]
-# tmp$Freq <- as.numeric(tmp$Freq)
-#
-# tmp <- tmp[!tmp$race %in% 'Total',]
-# row.names(tmp) <- 1:nrow(tmp)
-#
-#
-#
-# p <- ggplot() +
-# geom_bar(aes(x=label, y = Freq), data = tmp, stat = 'identity') +
-# coord_flip()
-# p
-#
-#
-# ```
-#
-# </div>
-# </div>
-# ")

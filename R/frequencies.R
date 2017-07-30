@@ -9,7 +9,7 @@
 #'
 #' @docType package
 #' @name frequencies
-#' @import rmarkdown knitr DT
+#' @import rmarkdown knitr DT ggplot2
 #' @importFrom gtools mixedorder
 #' @importFrom utils browseURL setTxtProgressBar txtProgressBar
 NULL

@@ -1,7 +1,7 @@
 Package: frequencies
 Type: Package
 Title: Easy Frequency Tables
-Version: 0.1.1.9001
+Version: 0.1.1.9003
 Author: Alistair Wilcox
 Maintainer: Alistair Wilcox <wilcoxafp@gmail.com>
 Description: The frequencies package comprises functions to generate SPSS/SAS
@@ -9,7 +9,7 @@ Description: The frequencies package comprises functions to generate SPSS/SAS
              variable and value label attributes where applicable with html
              output to quickly examine datasets.
 Depends: R (>= 3.0),
-         rmarkdown, knitr, DT
+         rmarkdown, knitr, DT, ggplot2
 Imports: gtools, utils
 Suggests: foreign, haven, testthat, covr, shiny
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
