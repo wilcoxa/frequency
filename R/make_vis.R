@@ -14,15 +14,21 @@ make_vis <- function(x) {
   x[["label"]][x[["label"]] %in% ""] <- x[[1]][x[["label"]] %in% ""]
 
   x[["Freq"]][x[["Freq"]] %in% "..."] <- 0
+  x$Freq <- as.numeric(x$Freq)
+  x$Freq[is.na(x$Freq)] <- 0
 
-  fact <- factor(x$label, levels=x$label)
+  x$fact <- factor(x$label, levels=x$label)
+
 
   labels.wrap  <- rev(lapply(strwrap(x$fact, 30, simplify=F),paste,collapse="\n"))
 
   p <- ggplot() +
-    geom_bar(aes_string(x="fact", y = as.numeric("Freq")), data = x, stat = "identity") +
-    coord_flip() + scale_x_discrete(limits = rev(levels(fact)),
-                                    labels = labels.wrap)
+    geom_bar(aes_string(x="fact", y = "Freq"), data = x, stat = "identity") +
+    coord_flip() + scale_x_discrete(limits = rev(levels(x$fact)),
+                                    labels = labels.wrap) +
+    theme(axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          aspect.ratio = 1/1)
   p
 
 }

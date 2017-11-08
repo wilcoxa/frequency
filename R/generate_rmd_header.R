@@ -15,7 +15,7 @@ ifelse(numcols > 1, "", "    toc_float: true"),
 <style type=\"text/css\">
 .main-container {
   ",
-ifelse(numcols > 1, "max-width: 1600px;", "max-width: 940px;"),
+ifelse(numcols > 1, "max-width: 3600px;", "max-width: 940px;"),
 
 "
 }

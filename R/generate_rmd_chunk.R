@@ -9,7 +9,7 @@ tab_txt <- paste0(
 <h3 style=\"color:#428bca;font-weight:bold;\">",
 gsub("'", "", names(all_freqs[i])), "</h3>
 
-```{r ", gsub("'", "", names(all_freqs[i])), ", echo=FALSE}",
+```{r '", gsub("'", "", names(all_freqs[i])), "', echo=FALSE}",
 "
 DT::datatable(all_freqs[[", i, "]],
 rownames = FALSE,
@@ -44,6 +44,8 @@ chart_txt <- paste0(
 "
 <div class = \"col-md-6\">
 
+<br>
+<br>
 <br>
 ```{r echo=FALSE}
 all_charts[[", i, "]]
