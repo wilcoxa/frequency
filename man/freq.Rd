@@ -4,7 +4,7 @@
 \alias{freq}
 \title{Frequencies}
 \usage{
-freq(x, file = NULL, maxrow = 30, trim = TRUE, type = "html",
+freq(x, file = NULL, weight = NULL, maxrow = 30, type = "html",
   template = NULL)
 }
 \arguments{
@@ -12,9 +12,9 @@ freq(x, file = NULL, maxrow = 30, trim = TRUE, type = "html",
 
 \item{file}{File name. Optional file name to save the output.}
 
-\item{maxrow}{Maximum number of rows to display in each frequency table.}
+\item{weight}{Weight variable name. (Note: this is a placeholder and not currently implemented)}
 
-\item{trim}{Trim whitespace of character vectors.}
+\item{maxrow}{Maximum number of rows to display in each frequency table.}
 
 \item{type}{Output type. Either html or doc.}
 

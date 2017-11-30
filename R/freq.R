@@ -4,8 +4,8 @@
 #'
 #' @param x Input data. Can be a dataframe, list or vector.
 #' @param file File name. Optional file name to save the output.
+#' @param weight Weight variable name. (Note: this is a placeholder and not currently implemented)
 #' @param maxrow Maximum number of rows to display in each frequency table.
-#' @param trim Trim whitespace of character vectors.
 #' @param type Output type. Either html or doc.
 #' @param template Word template. Optional doc template to use if producing doc output.
 #'
@@ -53,7 +53,7 @@
 #' }
 #'
 #' @export
-freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", template = NULL){
+freq <- function(x, file = NULL, weight = NULL, maxrow = 30, type = "html", template = NULL){
 
   type <- tolower(type)
 
@@ -77,6 +77,7 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
     stop("maximum rows should be more than 3")
   }
 
+  trim <- getOption("frequencies_trim")
   if (!trim %in% c(TRUE, FALSE)){
     stop("trim whitespace option should be TRUE or FALSE")
   }

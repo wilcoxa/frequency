@@ -153,21 +153,6 @@ test_that("Arguments - maxrow = ", {
 
 })
 
-test_that("Arguments - trim = ", {
-  dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
-  expect_error(freq(dat, trim = "asdf"))
-  expect_error(freq(dat, trim = ""))
-  expect_error(freq(dat, trim = NA))
-
-  # no errors
-  expect_error(freq(dat, trim = T), NA)
-  expect_error(freq(dat, trim = TRUE), NA)
-  expect_error(freq(dat, trim = "TRUE"), NA)
-  expect_error(freq(dat, trim = F), NA)
-  expect_error(freq(dat, trim = FALSE), NA)
-  expect_error(freq(dat, trim = "FALSE"), NA)
-})
-
 test_that("Arguments - type = ", {
   dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
   expect_error(freq(dat, type = "asdf"))
