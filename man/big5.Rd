@@ -19,4 +19,3 @@ data(big5)
 
 }
 \keyword{datasets}
-

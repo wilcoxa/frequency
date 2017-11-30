@@ -10,8 +10,8 @@ print(Sys.getlocale(category = "LC_ALL"))
 
 test_spss <- "test_spss_unicode.sav"
 
-foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE, reencode='utf-8'))
-foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE, reencode='utf-8'))
+foreign_df <- suppressWarnings(read.spss(test_spss, to.data.frame = TRUE, reencode='utf-8', use.value.labels = F))
+foreign_list <- suppressWarnings(read.spss(test_spss, to.data.frame = FALSE, reencode='utf-8', use.value.labels = F))
 
 dat <- foreign_list
 
@@ -151,21 +151,6 @@ test_that("Arguments - maxrow = ", {
   expect_error(freq(dat, maxrow = 10), NA)
   expect_error(freq(dat, maxrow = 100), NA)
 
-})
-
-test_that("Arguments - trim = ", {
-  dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
-  expect_error(freq(dat, trim = "asdf"))
-  expect_error(freq(dat, trim = ""))
-  expect_error(freq(dat, trim = NA))
-
-  # no errors
-  expect_error(freq(dat, trim = T), NA)
-  expect_error(freq(dat, trim = TRUE), NA)
-  expect_error(freq(dat, trim = "TRUE"), NA)
-  expect_error(freq(dat, trim = F), NA)
-  expect_error(freq(dat, trim = FALSE), NA)
-  expect_error(freq(dat, trim = "FALSE"), NA)
 })
 
 test_that("Arguments - type = ", {

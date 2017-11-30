@@ -4,8 +4,8 @@
 #'
 #' @param x Input data. Can be a dataframe, list or vector.
 #' @param file File name. Optional file name to save the output.
+#' @param weight Weight variable name. (Note: this is a placeholder and not currently implemented)
 #' @param maxrow Maximum number of rows to display in each frequency table.
-#' @param trim Trim whitespace of character vectors.
 #' @param type Output type. Either html or doc.
 #' @param template Word template. Optional doc template to use if producing doc output.
 #'
@@ -31,12 +31,7 @@
 #' # Produce a list of tables and flextables
 #' out <- freq(big5)
 #' out$tables[1] # standard output to console
-#' out$flextables[4] # flextable output to Viewer in RStudio
 #'
-#' # Suppress Viewer output
-#' options(frequencies_output_flextables = FALSE)
-#' x <- freq(big5)
-#' x[5] # standard print output
 #'
 #' # Supports label attributes from the package foreign package
 #' library(foreign)
@@ -58,7 +53,7 @@
 #' }
 #'
 #' @export
-freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", template = NULL){
+freq <- function(x, file = NULL, weight = NULL, maxrow = 30, type = "html", template = NULL){
 
   type <- tolower(type)
 
@@ -82,6 +77,7 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
     stop("maximum rows should be more than 3")
   }
 
+  trim <- getOption("frequencies_trim")
   if (!trim %in% c(TRUE, FALSE)){
     stop("trim whitespace option should be TRUE or FALSE")
   }
@@ -135,6 +131,8 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
 
   })
 
+  all_vis <- lapply(all_freqs, make_vis)
+
   #   labels <- lapply(labels, function(x){
   #     x[is.null(x)] <- ""
   #     ifelse(x == 'NULL', "", x)
@@ -143,8 +141,27 @@ freq <- function(x, file = NULL, maxrow = 30, trim = TRUE, type = "html", templa
   names(all_freqs) <- paste0(varnames, ": ", labels)
   names(all_freqs) <- gsub("^\\s+|\\s+$", "", names(all_freqs))
 
-  # write out
-  write_freqs(all_freqs, file, type)
+  # tmp <<- all_freqs
+  numcols <- 2
 
+  pths <- create_markdown(all_freqs, all_vis, numcols)
 
+  rmarkdown::render(input = pths$Rmd_pth,
+                    output_file = pths$html_pth,
+                    output_format = "html_document",
+                    quiet = TRUE)
+
+  # Open the document directly from R if allowed
+  if (getOption("frequencies_open_output")){
+    browseURL(pths$html_pth)
+  } else {
+    if(is.null(file)){
+      message("Temporary file saved to: ", pths$html_pth)
+    } else {
+      message("File saved to: ", pths$html_pth)
+    }
+    message("To open by default use: options(frequencies_open_output = TRUE)")
+  }
+
+  invisible(all_freqs)
 }

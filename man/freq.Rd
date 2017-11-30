@@ -4,7 +4,7 @@
 \alias{freq}
 \title{Frequencies}
 \usage{
-freq(x, file = NULL, maxrow = 30, trim = TRUE, type = "html",
+freq(x, file = NULL, weight = NULL, maxrow = 30, type = "html",
   template = NULL)
 }
 \arguments{
@@ -12,9 +12,9 @@ freq(x, file = NULL, maxrow = 30, trim = TRUE, type = "html",
 
 \item{file}{File name. Optional file name to save the output.}
 
-\item{maxrow}{Maximum number of rows to display in each frequency table.}
+\item{weight}{Weight variable name. (Note: this is a placeholder and not currently implemented)}
 
-\item{trim}{Trim whitespace of character vectors.}
+\item{maxrow}{Maximum number of rows to display in each frequency table.}
 
 \item{type}{Output type. Either html or doc.}
 
@@ -46,12 +46,7 @@ freq(big5, file = "mydir/myfile.html")
 # Produce a list of tables and flextables
 out <- freq(big5)
 out$tables[1] # standard output to console
-out$flextables[4] # flextable output to Viewer in RStudio
 
-# Suppress Viewer output
-options(frequencies_output_flextables = FALSE)
-x <- freq(big5)
-x[5] # standard print output
 
 # Supports label attributes from the package foreign package
 library(foreign)
@@ -73,4 +68,3 @@ freq(dat)
 }
 
 }
-

@@ -9,9 +9,6 @@ The goal of frequencies is to provide quick and easy frequency tables from SPSS,
 and other data files in a format that is familar to SPSS and SAS users. Frequencies are 
 generated with variable labels and value labels where applicable. 
 
-This package uses David Gohel's [ReporteRs](http://davidgohel.github.io/ReporteRs/) package to generate html output to 
-easily view frequency results.
-
 [**Example**](https://github.com/wilcoxa/frequencies/example/example.html) 
 
 Features

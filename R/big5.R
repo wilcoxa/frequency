@@ -2,6 +2,8 @@
 #'
 #' Answers to the Big Five Personality Test, constructed with items from the International Personality Item Pool.
 #'
+#' @name big5
+#'
 #' @docType data
 #'
 #' @usage data(big5)
@@ -15,4 +17,4 @@
 #' @examples
 #' data(big5)
 #'
-"big5"
+NULL

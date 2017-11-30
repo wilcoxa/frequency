@@ -5,9 +5,10 @@
     frequencies_sort_by = "value",
     frequencies_sort_descending = FALSE,
 
+
+    frequencies_trim = TRUE,
+
     # formatting options
-    frequencies_content_format = textProperties(color = "black", font.size = 10, font.family = "Arial"),
-    frequencies_varhead = textProperties(color = "#007AB2", font.size = 14, font.family = "Arial", font.weight = "bold"),
 
     # testing options
     frequencies_output_flextables = TRUE

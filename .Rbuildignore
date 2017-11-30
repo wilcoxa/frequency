@@ -6,3 +6,5 @@
 todo.md
 ^data-raw$
 ^example$
+write_freqs.R$
+.vscode
