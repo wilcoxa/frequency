@@ -1,21 +1,21 @@
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  op.frequencies <- list(
-    frequencies_open_output = FALSE,
-    frequencies_sort_by = "value",
-    frequencies_sort_descending = FALSE,
+  op.frequency <- list(
+    frequency_open_output = FALSE,
+    frequency_sort_by = "value",
+    frequency_sort_descending = FALSE,
 
 
-    frequencies_trim = TRUE,
+    frequency_trim = TRUE,
 
     # formatting options
 
     # testing options
-    frequencies_output_viewer = TRUE
+    frequency_output_viewer = TRUE
 
   )
-  toset <- !(names(op.frequencies) %in% names(op))
-  if(any(toset)) options(op.frequencies[toset])
+  toset <- !(names(op.frequency) %in% names(op))
+  if(any(toset)) options(op.frequency[toset])
 
   invisible()
 }

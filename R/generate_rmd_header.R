@@ -23,7 +23,7 @@ ifelse(numcols > 1, "max-width: 3600px;", "max-width: 940px;"),
 
 ```{r setup, include=FALSE}
 library('knitr')
-library('frequencies')
+library('frequency')
 library('DT')
 # library('ggplot2')
 knitr::opts_chunk$set(echo = TRUE)

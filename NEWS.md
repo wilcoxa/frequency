@@ -1,8 +1,3 @@
-# frequencies 0.1.1.9000
+# frequency 0.3.0
 
-* Release version
-* Added a `NEWS.md` file to track changes to the package.
-
-# frequencies 0.1.0
-
-* First working version
+* First release version

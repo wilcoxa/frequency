@@ -1,4 +1,4 @@
-#' Frequencies
+#' Freq
 #'
 #' This function generates frequencies
 #'
@@ -22,7 +22,7 @@
 #' freq(big5[4:6])
 #'
 #' # To automatically open html output in your browser use the following option:
-#' options(frequencies_open_output = TRUE)
+#' options(frequency_open_output = TRUE)
 #' freq(big5[, c('gender', 'E1')])
 #'
 #' # To save the output specify the filename and format
@@ -77,7 +77,7 @@ freq <- function(x, file = NULL, weight = NULL, maxrow = 30, type = "html", temp
     stop("maximum rows should be more than 3")
   }
 
-  trim <- getOption("frequencies_trim")
+  trim <- getOption("frequency_trim")
   if (!trim %in% c(TRUE, FALSE)){
     stop("trim whitespace option should be TRUE or FALSE")
   }
@@ -159,7 +159,7 @@ freq <- function(x, file = NULL, weight = NULL, maxrow = 30, type = "html", temp
                     quiet = TRUE)
 
   # Open the document directly from R if allowed
-  if (getOption("frequencies_open_output")){
+  if (getOption("frequency_open_output")){
     browseURL(pths$html_pth)
   } else {
     if(is.null(file)){
@@ -167,7 +167,7 @@ freq <- function(x, file = NULL, weight = NULL, maxrow = 30, type = "html", temp
     } else {
       message("File saved to: ", pths$html_pth)
     }
-    message("To open by default use: options(frequencies_open_output = TRUE)")
+    message("To open by default use: options(frequency_open_output = TRUE)")
   }
 
   invisible(all_freqs)

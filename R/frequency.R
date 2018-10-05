@@ -1,6 +1,6 @@
-#'frequencies: A package to generate frequencies
+#'frequency: A package to generate frequencies
 #'
-#' The frequencies package comprises functions to generate SPSS like frequencies in R.
+#' The frequency package comprises functions to generate SPSS like frequencies in R.
 #'
 #' @section Frequency functions:
 #'
@@ -8,7 +8,7 @@
 #'
 #'
 #' @docType package
-#' @name frequencies
+#' @name frequency
 #' @import rmarkdown knitr DT ggplot2
 #' @importFrom gtools mixedorder
 #' @importFrom utils browseURL setTxtProgressBar txtProgressBar

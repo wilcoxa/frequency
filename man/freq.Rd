@@ -2,7 +2,7 @@
 % Please edit documentation in R/freq.R
 \name{freq}
 \alias{freq}
-\title{Frequencies}
+\title{Freq}
 \usage{
 freq(x, file = NULL, weight = NULL, maxrow = 30, type = "html",
   template = NULL)
@@ -37,7 +37,7 @@ freq(big5$race)
 freq(big5[4:6])
 
 # To automatically open html output in your browser use the following option:
-options(frequencies_open_output = TRUE)
+options(frequency_open_output = TRUE)
 freq(big5[, c('gender', 'E1')])
 
 # To save the output specify the filename and format
@@ -45,7 +45,7 @@ freq(big5, file = "mydir/myfile.html")
 
 # Produce a list of tables
 out <- freq(big5)
-out$tables[1] # standard output to console
+out[1] # standard output to console
 
 
 # Supports label attributes from the package foreign package
@@ -58,7 +58,7 @@ freq(df)
 
 # Also supports label attributes from the haven package
 library(haven)
-dat <- read_spss(myfile)
+dat <- read_sav(myfile)
 freq(dat)
 
 # as well as other data with no label attributes

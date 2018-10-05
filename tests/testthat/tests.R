@@ -1,6 +1,6 @@
 library(foreign)
-options(frequencies_open_output = FALSE)
-options(frequencies_output_viewer = FALSE)
+options(frequency_open_output = FALSE)
+options(frequency_output_viewer = FALSE)
 
 print(Sys.getlocale(category = "LC_ALL"))
 Sys.setlocale("LC_COLLATE", "C") # R CMD check uses this default

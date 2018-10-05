@@ -1,17 +1,17 @@
-[![Travis-CI Build Status](https://travis-ci.org/wilcoxa/frequencies.svg?branch=master)](https://travis-ci.org/wilcoxa/frequencies)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/wilcoxa/frequencies?branch=master&svg=true)](https://ci.appveyor.com/project/wilcoxa/frequencies)
-[![codecov](https://codecov.io/gh/wilcoxa/frequencies/branch/master/graph/badge.svg)](https://codecov.io/gh/wilcoxa/frequencies)
+[![Travis-CI Build Status](https://travis-ci.org/wilcoxa/frequency.svg?branch=master)](https://travis-ci.org/wilcoxa/frequency)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/wilcoxa/frequency?branch=master&svg=true)](https://ci.appveyor.com/project/wilcoxa/frequency)
+[![codecov](https://codecov.io/gh/wilcoxa/frequency/branch/master/graph/badge.svg)](https://codecov.io/gh/wilcoxa/frequency)
 
 
-# frequencies
+# frequency
 
-The goal of frequencies is to provide quick and easy frequency tables from SPSS, SAS 
+The goal of frequency is to provide quick and easy frequency tables from SPSS, SAS 
 and other data files in a format that is familar to SPSS and SAS users. Frequencies are 
 generated with variable labels and value labels where applicable. 
 
-[**Example**](https://rawgit.com/wilcoxa/frequencies/master/example/example.html) 
+[**Example**](https://rawgit.com/wilcoxa/frequency/master/example/example.html) 
 
-Features
+## Features
 * Easily review an entire dataset with one line
 * Includes categories included in the label attributes, even if 0 cases exist in the dataset
 * Checks for NA and blank cases to review any missing data
@@ -22,11 +22,11 @@ Features
 
 ## Installation
 
-You can install frequencies from github with:
+You can install frequency from github with:
 
 ```R
 # install.packages("devtools")
-devtools::install_github("wilcoxa/frequencies")
+devtools::install_github("wilcoxa/frequency")
 ```
 
 ## Example
@@ -34,7 +34,7 @@ devtools::install_github("wilcoxa/frequencies")
 Using foreign:
 
 ```R
-library(frequencies)
+library(frequency)
 library(foreign)
 dat <- read.spss("mydat.sav")
 
@@ -47,7 +47,7 @@ freq(dat[3:5]) # specific variables
 ```
 Using haven:
 ```R
-library(frequencies)
+library(frequency)
 library(haven)
 dat <- read_sav("mydat.sav", user_na = TRUE)
 
@@ -61,7 +61,7 @@ freq(dat[3:5])
 
 To automatically open html output:
 ```R
-options(frequencies_open_output = TRUE)
+options(frequency_open_output = TRUE)
 freq(dat)
 
 ```

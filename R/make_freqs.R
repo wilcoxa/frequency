@@ -32,7 +32,7 @@ makefreqs <- function(x, var, maxrow, trim){
   names(tmp) <- c(var, "missing")
   res <- merge(res, tmp, by = var, all = T)
 
-  sort_by <- switch(getOption("frequencies_sort_by"),
+  sort_by <- switch(getOption("frequency_sort_by"),
                     "value" = var,
                     "label" = "label",
                     "count" = "freq")
@@ -41,10 +41,10 @@ makefreqs <- function(x, var, maxrow, trim){
   res[["missing"]][is.na(res[["missing"]])] <- FALSE
 
   res_v <- res[res[["missing"]] %in% FALSE,]
-  res_v <- res_v[mixedorder(res_v[[sort_by]], decreasing = getOption("frequencies_sort_descending")),]
+  res_v <- res_v[mixedorder(res_v[[sort_by]], decreasing = getOption("frequency_sort_descending")),]
 
   res_m <- res[res[["missing"]] %in% TRUE,]
-  res_m <- res_m[mixedorder(res_m[[sort_by]], decreasing = getOption("frequencies_sort_descending")),]
+  res_m <- res_m[mixedorder(res_m[[sort_by]], decreasing = getOption("frequency_sort_descending")),]
   mis <- which(!res_m[[var]] %in% "" & !is.na(res_m[[var]]))
   bl <- which(res_m[[var]] %in% "")
   na <- which(is.na(res_m[[var]]))
