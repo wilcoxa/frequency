@@ -1,4 +1,4 @@
-create_markdown <- function(all_freqs, all_charts, numcols){
+create_markdown <- function(all_freqs, all_charts, numcols, file){
 
   # prepare temporary copy of data for markdown
   out_RData <- tempfile(fileext = ".RData")
@@ -18,7 +18,7 @@ create_markdown <- function(all_freqs, all_charts, numcols){
 
   write(rmd_body, file = out_Rmd, append = T)
 
-  out_html <- tempfile(fileext = ".html")
+  out_html <- ifelse(is.null(file), tempfile(fileext = ".html"), file)
 
   out <- list(RData_pth = out_RData,
               Rmd_pth = out_Rmd,

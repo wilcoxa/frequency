@@ -144,11 +144,18 @@ freq <- function(x, file = NULL, weight = NULL, maxrow = 30, type = "html", temp
   # tmp <<- all_freqs
   numcols <- 2
 
-  pths <- create_markdown(all_freqs, all_vis, numcols)
+  pths <- create_markdown(all_freqs, all_vis, numcols, file)
+
+  if(is.null(file)){
+    out_dir <- NULL
+  } else {
+    out_dir <- dirname(file)
+  }
 
   rmarkdown::render(input = pths$Rmd_pth,
                     output_file = pths$html_pth,
                     output_format = "html_document",
+                    output_dir = out_dir,
                     quiet = TRUE)
 
   # Open the document directly from R if allowed
