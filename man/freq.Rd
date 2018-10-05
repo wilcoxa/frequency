@@ -43,7 +43,7 @@ freq(big5[, c('gender', 'E1')])
 # To save the output specify the filename and format
 freq(big5, file = "mydir/myfile.html")
 
-# Produce a list of tables and flextables
+# Produce a list of tables
 out <- freq(big5)
 out$tables[1] # standard output to console
 

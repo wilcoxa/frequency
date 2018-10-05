@@ -11,7 +11,7 @@
     # formatting options
 
     # testing options
-    frequencies_output_flextables = TRUE
+    frequencies_output_viewer = TRUE
 
   )
   toset <- !(names(op.frequencies) %in% names(op))

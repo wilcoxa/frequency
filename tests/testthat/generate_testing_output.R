@@ -1,7 +1,7 @@
 library(haven)
 library(foreign)
 options(frequencies_open_output = FALSE)
-options(frequencies_output_flextables = FALSE)
+options(frequencies_output_viewer = FALSE)
 
 Sys.setlocale("LC_COLLATE", "C") # R CMD check uses this default
 # Sys.setlocale("LC_COLLATE", "English_United States.1252")
