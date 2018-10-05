@@ -9,7 +9,7 @@ The goal of frequencies is to provide quick and easy frequency tables from SPSS,
 and other data files in a format that is familar to SPSS and SAS users. Frequencies are 
 generated with variable labels and value labels where applicable. 
 
-[**Example**](http://htmlpreview.github.io/?https://github.com/wilcoxa/frequencies/blob/master/example/example.html) 
+[**Example**](https://rawgit.com/wilcoxa/frequencies/master/example/example.html) 
 
 Features
 * Easily review an entire dataset with one line
