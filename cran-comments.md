@@ -1,7 +1,13 @@
 ## Test environments
-* local OS X install, R 3.2.3
-* ubuntu 12.04 (on travis-ci), R 3.2.3
-* win-builder (devel and release)
+* local ubuntu install, R 3.3.3
+* local win install, R 3.5.1
+
+* ubuntu 14.04 (on travis-ci), R 3.5.1
+* windows (appveyor) 
+R version 3.5.1 Patched (2018-10-03 r75399)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows Server 2012 R2 x64 (build 9600) 
+Build Success
 
 ## R CMD check results
 
@@ -9,15 +15,23 @@
 
 * This is a new release.
 
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Alistair Wilcox <frequency@alistairwilcox.com>'
+New submission
+
+## rhub::check_for_cran()
+checking CRAN incoming feasibility
+   Maintainer: 'Alistair Wilcox <frequency@alistairwilcox.com>'
+   
+   New submission
+   
+
+## devtools::check()
+R CMD check results
+0 errors | 0 warnings | 0 notes
+
+
 ## Reverse dependencies
 
 This is a new release, so there are no reverse dependencies.
 
----
-
-* I have run R CMD check on the NUMBER downstream dependencies.
-  (Summary at ...). 
-  
-* FAILURE SUMMARY
-
-* All revdep maintainers were notified of the release on RELEASE DATE.
