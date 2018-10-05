@@ -9,5 +9,5 @@ Sys.setlocale("LC_COLLATE", "C") # R CMD check uses this default
 print(Sys.getlocale(category = "LC_ALL"))
 
 library(testthat)
-library(frequencies)
-test_check("frequencies")
+library(freq)
+test_check("freq")

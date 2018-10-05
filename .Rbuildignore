@@ -4,6 +4,7 @@
 ^cran-comments\.md$
 ^appveyor\.yml$
 todo.md
+todo.Rmd
 ^data-raw$
 ^example$
 write_freqs.R$

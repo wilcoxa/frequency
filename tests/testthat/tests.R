@@ -1,6 +1,6 @@
 library(foreign)
-options(frequencies_open_output = FALSE)
-options(frequencies_output_viewer = FALSE)
+options(freq_open_output = FALSE)
+options(freq_output_viewer = FALSE)
 
 print(Sys.getlocale(category = "LC_ALL"))
 Sys.setlocale("LC_COLLATE", "C") # R CMD check uses this default
@@ -168,13 +168,6 @@ test_that("Arguments - type = ", {
   expect_error(freq(dat, type = "HTML"), NA)
 
 })
-
-test_that("Arguments - template = ", {
-
-})
-
-
-
 
 #-------------------------------------------------------------------------------
 #----------------------------------------------------------------------------end

@@ -1,10 +1,10 @@
-Package: frequencies
+Package: freq
 Type: Package
 Title: Easy Frequency Tables
 Version: 0.2.0.9002
 Author: Alistair Wilcox
-Maintainer: Alistair Wilcox <wilcoxafp@gmail.com>
-Description: The frequencies package comprises functions to generate SPSS/SAS
+Maintainer: Alistair Wilcox <freq@alistairwilcox.com>
+Description: The freq package comprises functions to generate SPSS/SAS
     styled frequency tables. Frequency tables are generated with
     variable and value label attributes where applicable with html
     output to quickly examine datasets.
@@ -27,5 +27,5 @@ SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 6.0.1
-URL: https://github.com/wilcoxa/frequencies
-BugReports: https://github.com/wilcoxa/frequencies/issues
+URL: https://github.com/wilcoxa/freq
+BugReports: https://github.com/wilcoxa/freq/issues
