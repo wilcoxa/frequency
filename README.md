@@ -9,7 +9,7 @@ The goal of frequencies is to provide quick and easy frequency tables from SPSS,
 and other data files in a format that is familar to SPSS and SAS users. Frequencies are 
 generated with variable labels and value labels where applicable. 
 
-[**Example**](https://github.com/wilcoxa/frequencies/example/example.html) 
+[**Example**](http://htmlpreview.github.io/?https://github.com/wilcoxa/frequencies/blob/master/example/example.html) 
 
 Features
 * Easily review an entire dataset with one line
@@ -49,7 +49,7 @@ Using haven:
 ```R
 library(frequencies)
 library(haven)
-dat <- read_spss("mydat.sav")
+dat <- read_sav("mydat.sav", user_na = TRUE)
 
 freq(dat)
 
@@ -70,16 +70,7 @@ Alternately check interactively at the console:
 ```R
 # produce a list of tables
 x <- freq(dat) 
-
-x$tables # standard output to console
-
-# Suppress Viewer output
-options(frequencies_output_viewer = FALSE)
-
-x <- freq(dat)
-
-x[5] # standard print output 
-
+x[1]
 
 ```
 Save output:

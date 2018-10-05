@@ -30,7 +30,7 @@
 #'
 #' # Produce a list of tables
 #' out <- freq(big5)
-#' out$tables[1] # standard output to console
+#' out[1] # standard output to console
 #'
 #'
 #' # Supports label attributes from the package foreign package
@@ -43,7 +43,7 @@
 #'
 #' # Also supports label attributes from the haven package
 #' library(haven)
-#' dat <- read_spss(myfile)
+#' dat <- read_sav(myfile)
 #' freq(dat)
 #'
 #' # as well as other data with no label attributes
