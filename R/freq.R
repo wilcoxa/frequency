@@ -1,6 +1,6 @@
 #' Freq
 #'
-#' This function generates frequencies
+#' This function generates frequency tables
 #'
 #' @param x Input data. Can be a dataframe, list or vector.
 #' @param file File name. Optional file name to save the output.
@@ -13,25 +13,28 @@
 #'
 #' @examples
 #'
-#' \dontrun{
+#' # Suppress external output for examples
+#' options(frequency_render = FALSE)
+#'
 #' # Create frequency tables for the entire dataset
 #' freq(big5)
 #'
 #' # For specific variable/s
-#' freq(big5$race)
-#' freq(big5[4:6])
+#' freq(big5[5:6])
+#' freq(big5$country)
 #'
+#' # Produce a list of tables
+#' out <- freq(big5[8:10])
+#' out[1]
+#'
+#' \dontrun{
 #' # To automatically open html output in your browser use the following option:
+#' options(frequency_render = TRUE)
 #' options(frequency_open_output = TRUE)
 #' freq(big5[, c('gender', 'E1')])
 #'
 #' # To save the output specify the filename and format
 #' freq(big5, file = "mydir/myfile.html")
-#'
-#' # Produce a list of tables
-#' out <- freq(big5)
-#' out[1] # standard output to console
-#'
 #'
 #' # Supports label attributes from the package foreign package
 #' library(foreign)
@@ -131,7 +134,10 @@ freq <- function(x, file = NULL, weight = NULL, maxrow = 30, type = "html", temp
 
   })
 
-  all_vis <- lapply(all_freqs, make_vis)
+  # Histogram
+  if(getOption("frequency_render") %in% TRUE) {
+    all_vis <- lapply(all_freqs, make_vis)
+  }
 
   #   labels <- lapply(labels, function(x){
   #     x[is.null(x)] <- ""
@@ -141,8 +147,14 @@ freq <- function(x, file = NULL, weight = NULL, maxrow = 30, type = "html", temp
   names(all_freqs) <- paste0(varnames, ": ", labels)
   names(all_freqs) <- gsub("^\\s+|\\s+$", "", names(all_freqs))
 
+  if(getOption("frequency_render") %in% FALSE) {
+    return(all_freqs)
+  }
+
   # tmp <<- all_freqs
   numcols <- 2
+
+
 
   pths <- create_markdown(all_freqs, all_vis, numcols, file)
 

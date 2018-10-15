@@ -24,29 +24,32 @@ freq(x, file = NULL, weight = NULL, maxrow = 30, type = "html",
 A frequency table in html or doc format.
 }
 \description{
-This function generates frequencies
+This function generates frequency tables
 }
 \examples{
 
-\dontrun{
+# Suppress external output for examples
+options(frequency_render = FALSE)
+
 # Create frequency tables for the entire dataset
 freq(big5)
 
 # For specific variable/s
-freq(big5$race)
-freq(big5[4:6])
+freq(big5[5:6])
+freq(big5$country)
 
+# Produce a list of tables
+out <- freq(big5[8:10])
+out[1]
+
+\dontrun{
 # To automatically open html output in your browser use the following option:
+options(frequency_render = TRUE)
 options(frequency_open_output = TRUE)
 freq(big5[, c('gender', 'E1')])
 
 # To save the output specify the filename and format
 freq(big5, file = "mydir/myfile.html")
-
-# Produce a list of tables
-out <- freq(big5)
-out[1] # standard output to console
-
 
 # Supports label attributes from the package foreign package
 library(foreign)

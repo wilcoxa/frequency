@@ -11,7 +11,8 @@
     # formatting options
 
     # testing options
-    frequency_output_viewer = TRUE
+    frequency_output_viewer = TRUE,
+    frequency_render = FALSE
 
   )
   toset <- !(names(op.frequency) %in% names(op))
