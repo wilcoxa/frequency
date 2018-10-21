@@ -26,6 +26,7 @@ before_test:
 environment:
 
     R_INSTALL_ARGS: --no-multiarch
+    PKGTYPE: binary
 
 build_script:
   - travis-tool.sh install_deps
