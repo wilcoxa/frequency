@@ -1,3 +1,13 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* removed the redundant " The frequency package comprises 
+functions to".
+
+* removed \dontrun{} for examples in freq() for users to run and for checking. Examples that
+would generate external .html output are still wrapped in \dontrun{}
+
+
 ## Test environments
 * local ubuntu install, R 3.3.3
 * local win install, R 3.5.1

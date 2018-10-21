@@ -1,12 +1,12 @@
 Package: frequency
 Type: Package
 Title: Easy Frequency Tables
-Version: 0.3.1.9010
+Version: 0.3.1
 Author: Alistair Wilcox
 Maintainer: Alistair Wilcox <frequency@alistairwilcox.com>
 Description: Generate 'SPSS'/'SAS' styled frequency tables. Frequency tables are 
-    generated with variable and value label attributes where applicable with html
-    output to quickly examine datasets.
+    generated with variable and value label attributes where applicable with optional
+    html output to quickly examine datasets.
 Depends:
     R (>= 3.0),
     rmarkdown,

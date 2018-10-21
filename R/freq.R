@@ -27,9 +27,9 @@
 #' out <- freq(big5[8:10])
 #' out[1]
 #'
+#' options(frequency_render = TRUE)
 #' \dontrun{
 #' # To automatically open html output in your browser use the following option:
-#' options(frequency_render = TRUE)
 #' options(frequency_open_output = TRUE)
 #' freq(big5[, c('gender', 'E1')])
 #'
