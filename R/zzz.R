@@ -1,18 +1,25 @@
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.frequency <- list(
+
+    # Render output using rmarkdown
+    frequency_render = TRUE,
+
+    # Automatically open external output
     frequency_open_output = FALSE,
+
+    # Sorting options
     frequency_sort_by = "value",
     frequency_sort_descending = FALSE,
 
-
+    # Table options
     frequency_trim = TRUE,
 
-    # formatting options
+    # Formatting options
 
-    # testing options
+    # Testing options
     frequency_output_viewer = TRUE,
-    frequency_render = FALSE
+    frequency_testthat_debug = FALSE
 
   )
   toset <- !(names(op.frequency) %in% names(op))

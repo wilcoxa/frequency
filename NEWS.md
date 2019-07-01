@@ -4,6 +4,7 @@
 * Added custom print method for frequecy tables
 * Removes rowname from output
 * Cleanup package documentation
+* Change default option frequency_render = TRUE
 
 # frequency 0.3.1
 
