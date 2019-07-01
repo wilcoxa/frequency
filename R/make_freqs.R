@@ -112,5 +112,11 @@ makefreqs <- function(x, var, maxrow, trim){
     res <- rbind(res[1:(trunc(maxrow/2)), ], blankline, res[(nrow(res)-trunc(maxrow/2)):nrow(res), ])
   }
 
+  # reset row numbers
+  rownames(res) <- c()
+
+  # Add freq_table class for printing methods
+  class(res) <- append("freq_table", class(res))
+
   res
 }
