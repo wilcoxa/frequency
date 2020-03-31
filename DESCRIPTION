@@ -1,7 +1,7 @@
 Package: frequency
 Type: Package
 Title: Easy Frequency Tables
-Version: 0.4.0.9006
+Version: 0.4.0.9007
 Author: Alistair Wilcox
 Maintainer: Alistair Wilcox <frequency@alistairwilcox.com>
 Description: Generate 'SPSS'/'SAS' styled frequency tables. Frequency tables are 

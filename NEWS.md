@@ -5,6 +5,7 @@
 * Removes rowname from output
 * Cleanup package documentation
 * Change default option frequency_render = TRUE
+* Updates for r-devel release
 
 # frequency 0.3.1
 
