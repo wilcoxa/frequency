@@ -4,7 +4,9 @@
 \name{big5}
 \alias{big5}
 \title{Big 5 Personality Factors Survey Data}
-\format{A dataframe}
+\format{
+A dataframe
+}
 \source{
 \href{http://personality-testing.info/_rawdata/}{Open psychology data: Raw data from online personality tests}
 }
