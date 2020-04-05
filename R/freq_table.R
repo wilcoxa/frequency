@@ -5,7 +5,7 @@
 #' @param x object of class \code{freq.table}
 #' @param ... optional arguments to \code{data.frame}
 #'
-#' @example
+#' @examples
 #' # Suppress external output for examples
 #' options(frequency_render = FALSE)
 #'

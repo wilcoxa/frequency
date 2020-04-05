@@ -4,8 +4,14 @@
 \alias{freq}
 \title{Freq}
 \usage{
-freq(x, file = NULL, weight = NULL, maxrow = 30, type = "html",
-  template = NULL)
+freq(
+  x,
+  file = NULL,
+  weight = NULL,
+  maxrow = 30,
+  type = "html",
+  template = NULL
+)
 }
 \arguments{
 \item{x}{Input data. Can be a dataframe, list or vector.}

@@ -1,4 +1,4 @@
-# frequency (development version)
+# frequency 0.4.0 
 
 * Added freq_table class
 * Added custom print method for frequecy tables
