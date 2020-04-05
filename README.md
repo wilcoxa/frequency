@@ -1,28 +1,29 @@
 [![Travis-CI Build Status](https://travis-ci.org/wilcoxa/frequency.svg?branch=master)](https://travis-ci.org/wilcoxa/frequency)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/wilcoxa/frequency?branch=master&svg=true)](https://ci.appveyor.com/project/wilcoxa/frequency)
 [![codecov](https://codecov.io/gh/wilcoxa/frequency/branch/master/graph/badge.svg)](https://codecov.io/gh/wilcoxa/frequency)
+[![CRAN status](https://www.r-pkg.org/badges/version/frequency)](https://CRAN.R-project.org/package=frequency)
 
 
 # frequency
 
 The goal of frequency is to provide quick and easy frequency tables from SPSS, SAS 
-and other data files in a format that is familar to SPSS and SAS users. Frequencies are 
+and other data files in a format that is familiar to SPSS and SAS users. Frequencies are 
 generated with variable labels and value labels where applicable. 
 
 [**Example**](https://rawgit.com/wilcoxa/frequency/master/example/example.html) 
 
 ## Features
-* Easily review an entire dataset with one line
+* Easily review an entire dataset with one line of code
 * Includes categories included in the label attributes, even if 0 cases exist in the dataset
 * Checks for NA and blank cases to review any missing data
 * User missing variables can be reported in missing category
 * Allows labels for both string and numeric classes
-* Suppresses printing of very long tables - defaults to top and bottom cases (can be changed with the maxrow option) 
+* Suppresses printing of very long tables - defaults to top and bottom cases (can be changed with the "maxrow" option) 
 * Supports label conventions from both foreign and haven packages
 
 ## Installation
 
-You can install frequency from github with:
+You can install frequency from GitHub with:
 
 ```R
 # install.packages("devtools")
