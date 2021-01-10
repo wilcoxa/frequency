@@ -3,8 +3,8 @@
 #' Prepare example data sets
 #'
 #' Source:
-#' http://personality-testing.info/_rawdata/
-#' http://personality-testing.info/_rawdata/BIG5.zip
+#' http://openpsychometrics.org/_rawdata/
+#' http://openpsychometrics.org/_rawdata/BIG5.zip
 #'
 #'
 

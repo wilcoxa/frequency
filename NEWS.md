@@ -2,6 +2,7 @@
 * Add GitHub actions for build
 * Remove OS-x devel build on Travis
 * Add check for Pandoc in unit tests
+* Updated big5 dataset citation
 
 # frequency 0.4.0 
 
