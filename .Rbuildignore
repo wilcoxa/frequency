@@ -9,3 +9,4 @@ todo.Rmd
 ^example$
 write_freqs.R$
 .vscode
+^\.github$
