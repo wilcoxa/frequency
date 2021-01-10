@@ -34,9 +34,13 @@ test_that("Loading foreign", {
 context("Frequency output")
 
 test_that("All", {
+  skip_if(!pandoc_available())
   expect_equal(raw_all, freq(dat))
 })
+
 test_that("Individual tables", {
+  skip_if(!pandoc_available())
+
   expect_equal(raw_id, freq(dat$id))
 
   print(raw_numeric)
@@ -76,7 +80,7 @@ test_that("Individual tables", {
 context("Package comparison")
 
 test_that("foreign_df vs foreign_list", {
-  # expect_equal(foreign_df, foreign_list)
+  skip_if(!pandoc_available())
 
   print("Foreign: df vs list")
   # handles missing labels differently
@@ -93,6 +97,8 @@ test_that("foreign_df vs foreign_list", {
 context("Input assumptions")
 
 test_that("Arguments - x = ", {
+  skip_if(!pandoc_available())
+
   # dataframe
   df <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
   # no error
@@ -114,6 +120,7 @@ test_that("Arguments - x = ", {
 
 test_that("Arguments - file = ", {
   skip_on_cran()
+  skip_if(!pandoc_available())
 
   dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
   # expect_error(freq(dat, file = "")) # should be error?
@@ -139,6 +146,8 @@ test_that("Arguments - file = ", {
 })
 
 test_that("Arguments - maxrow = ", {
+  skip_if(!pandoc_available())
+
   dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
   expect_error(freq(dat, maxrow = 1))
   expect_error(freq(dat, maxrow = -11))
@@ -154,6 +163,9 @@ test_that("Arguments - maxrow = ", {
 })
 
 test_that("Arguments - type = ", {
+  skip_on_cran()
+  skip_if(!pandoc_available())
+
   dat <- data.frame("a" = LETTERS[1:10], "b" = 1:10)
   expect_error(freq(dat, type = "asdf"))
   expect_error(freq(dat, type = ""))
@@ -168,7 +180,3 @@ test_that("Arguments - type = ", {
   expect_error(freq(dat, type = "HTML"), NA)
 
 })
-
-#-------------------------------------------------------------------------------
-#----------------------------------------------------------------------------end
-#-------------------------------------------------------------------------------
