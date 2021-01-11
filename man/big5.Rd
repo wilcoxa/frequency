@@ -8,7 +8,7 @@
 A dataframe
 }
 \source{
-\href{http://openpsychometrics.org/_rawdata/}{Open psychology data: Raw data from online personality tests}
+\href{https://openpsychometrics.org/_rawdata/}{Open psychology data: Raw data from online personality tests}
 }
 \usage{
 data(big5)

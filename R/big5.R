@@ -8,7 +8,7 @@
 #'
 #' @usage data(big5)
 #'
-#' @source \href{http://openpsychometrics.org/_rawdata/}{Open psychology data: Raw data from online personality tests}
+#' @source \href{https://openpsychometrics.org/_rawdata/}{Open psychology data: Raw data from online personality tests}
 #'
 #' @keywords datasets
 #'
