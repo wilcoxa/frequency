@@ -1,28 +1,16 @@
-## r-devel update
-Fixed issue raising error in r-devel build:
-https://cran.rstudio.com//web/checks/check_results_frequency.html
-Error originated in unit tests - loading of SPSS file using foreign without 
-stringsAsFactors argument. No changes needed in core package.
+Update to address CRAN package check error results, flavors: r-patched-solaris-x86, r-release-macos-x86_64, and r-oldrel-macos-x86_64. Errors from custom testthat specified tests, only on these platforms, status OK on all other flavors. Have tested on these specific platforms (below)
 
-## Test environments
-* local win install, r-devel (2020-04-03) r78147
-* local win install, R 3.6.3
-* local ubuntu install, R 3.3.3
-
-* ubuntu  (on travis-ci)
-  * oldrel 3.5.3 
-  * release 3.6.2 
-  * devel R Under development (unstable) (2020-03-13 r77948)
-
-* windows (appveyor) R version 3.6.3 Patched (2020-03-11 r78063)
-
+In this version:    
+ - Added condition to check for failing unit tests where pandoc installation unavailable  
+ - Update unit tests  
+ - Update redirected URL in dataset documentation  
+ - Added new testing environments
+ 
 ## R CMD check results
 
 There were no ERRORs, WARNINGs or NOTEs
 
 Status: OK
- [40s]
-
 R CMD check succeeded
 
 ## winbuilder
@@ -30,13 +18,57 @@ R CMD check succeeded
 * DONE
 Status: OK
 
-## rhub::check_for_cran()
-There were no ERRORs, WARNINGs or NOTEs
-
-frequency 0.4.0: OK
-   
-## devtools::check()
-0 errors | 0 warnings | 0 notes
-
 ## Reverse dependencies
 There are no reverse dependencies.
+
+
+
+# Test environments
+There were no ERRORs, WARNINGs or NOTES in all of the following test environments
+ 
+### Local
+ - local win install, R 4.0.3
+ - local ubuntu install, R 4.0.3
+
+### rhub
+ - check_for_cran
+ https://builder.r-hub.io/status/original/frequency_0.4.1.tar.gz-3b0571d66ea84de8a9afb05b68ffa3c6
+
+ - macos-highsierra-release-cran
+ https://builder.r-hub.io/status/original/frequency_0.4.1.tar.gz-d53fafb1780542f58c890cd353746caa
+
+ - solaris-x86-patched
+ https://builder.r-hub.io/status/original/frequency_0.4.1.tar.gz-b1a362c381f345a9956285079684db17
+
+
+### GitHub actions R-CMD-CHECK 
+ - {os: macOS-latest,   r: 'release'}
+ - {os: windows-latest, r: 'release'}
+ - {os: windows-latest, r: '3.6'}
+ - {os: ubuntu-16.04,   r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", http-user-agent: "R/4.0.0 (ubuntu-16.04) R (4.0.0 x86_64-pc-linux-gnu x86_64 linux-gnu) on GitHub Actions" }
+ - {os: ubuntu-16.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+ - {os: ubuntu-16.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+ - {os: ubuntu-16.04,   r: '3.5',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+ - {os: ubuntu-16.04,   r: '3.4',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+
+https://github.com/wilcoxa/frequency/actions/runs/477480460
+
+### travis-ci
+ - ubuntu
+   - oldrel 3.6.3 
+   - release 4.0.2
+   - R Under development (unstable) (2021-01-09 r79815)
+
+ - osx
+   - oldrel 3.6.3
+   - release 4.0.2
+
+https://travis-ci.org/github/wilcoxa/frequency
+
+### appveyor
+ - R version 4.0.3 Patched (2021-01-08 r79815)
+ - Platform: x86_64-w64-mingw32/x64 (64-bit)
+ - Running under: Windows Server 2012 R2 x64 (build 9600)
+
+ https://ci.appveyor.com/project/wilcoxa/frequency
+
