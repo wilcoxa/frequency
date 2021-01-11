@@ -1,8 +1,10 @@
+<!-- badges: start -->
 [![Travis-CI Build Status](https://travis-ci.org/wilcoxa/frequency.svg?branch=master)](https://travis-ci.org/wilcoxa/frequency)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/wilcoxa/frequency?branch=master&svg=true)](https://ci.appveyor.com/project/wilcoxa/frequency)
 [![codecov](https://codecov.io/gh/wilcoxa/frequency/branch/master/graph/badge.svg)](https://codecov.io/gh/wilcoxa/frequency)
 [![CRAN status](https://www.r-pkg.org/badges/version/frequency)](https://CRAN.R-project.org/package=frequency)
-
+[![R-CMD-check](https://github.com/wilcoxa/frequency/workflows/R-CMD-check/badge.svg)](https://github.com/wilcoxa/frequency/actions)
+<!-- badges: end -->
 
 # frequency
 
